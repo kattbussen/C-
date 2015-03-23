@@ -50,6 +50,16 @@ void assertCorrectColoring(int N)
 	assert(result=true);
 }
 
+//************************************************
+// Create a tree with N elements.
+// Check that the tree contains N elements. 
+//************************************************
+void assertCorrectNoOfElements(int N)
+{
+	std::shared_ptr<Node<int>> p = populateTree(N);
+	//assert();
+}
+
 int countElements(std::shared_ptr<Node<int>> node)
 {
 	return 0;
@@ -73,9 +83,10 @@ int main()
 	nodL->parent = nod;
 	nodR->parent = nod;
 
-	rbtree<int> tree;
+	Rbtree<int> tree(value);
 	//tree.print(nod);
 	bool rightColors = checkColors(nod);
 	std::cout << rightColors << std::endl;
+	std::cout << tree.getRoot().getVal() << std::endl;
 }
 
