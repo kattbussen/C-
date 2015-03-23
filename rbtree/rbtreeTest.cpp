@@ -83,10 +83,10 @@ int main()
 	nodL->parent = nod;
 	nodR->parent = nod;
 
-	Rbtree<int> tree(value);
-	//tree.print(nod);
+	Rbtree tree;
+	tree.print(nod);
 	bool rightColors = checkColors(nod);
 	std::cout << rightColors << std::endl;
-	std::cout << tree.getRoot().getVal() << std::endl;
+	//std::cout << tree.getRoot().getVal() << std::endl;
 }
 

@@ -1,20 +1,20 @@
 #include "node.h"
 
-template<class T> class Rbtree
+class Rbtree
 {
 	public:
-		Rbtree(T val) : Rbtree<T>::rootP(new Node<T>(val)), (Rbtree<T>::root=*rootP) {}
+		//template <class T> Rbtree(T val) : {}
 //			rootP(new Node<T>(val)); 
 //			root = *rootP;
 //		}
 	
-		void push(Node<T> node);
-		void print(std::shared_ptr<Node<T>> node);
+		template <class T> void push(Node<T> node);
+		template <class T> void print(std::shared_ptr<Node<T>> node);
 		int getElementCount();
-		Node<T> getRoot();
+		//template <class T> Node<T> getRoot();
 
 	private:	
-		Node<T> root;
-		std::shared_ptr<Node<T>> rootP;
+		//template <class T> Node<T> root;
+		//template <class T> std::shared_ptr<Node<T>> rootP;
 		int elementCount;
 };
