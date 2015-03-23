@@ -3,19 +3,22 @@
 
 int main(){
 	int value = 5;
-	Node<int>* nod = new Node<int>(value);
-	Node<int>* nodL = new Node<int>(value-1);
-	Node<int>* nodR = new Node<int>(value+1);
+	std::shared_ptr<Node<int>> nod(new Node<int>(value));
+	std::shared_ptr<Node<int>> nodL(new Node<int>(value-1));
+	std::shared_ptr<Node<int>> nodR(new Node<int>(value+1));
 	
 	std::cout << nod->getVal() << nodL->getVal() << nodR->getVal() << std::endl;
 
 	nod->isBlack = true;
-	nod->leftChild = std::unique_ptr<Node<int>>(nodL);
-	nod->rightChild = std::unique_ptr<Node<int>>(nodR);
+		
+	std::cout << nod->getVal() << std::endl;
+	
+	nod->leftChild = nodL; 
+	nod->rightChild = nodR;
 
-	nodL->parent = std::shared_ptr<Node<int>>(nod);
-	nodR->parent = std::shared_ptr<Node<int>>(nod);
+	nodL->parent = nod;
+	nodR->parent = nod;
 
 	rbtree<int> tree;
-	tree.print();
+	tree.print(nod);
 }
