@@ -133,7 +133,7 @@ void assertSameValue()
 
 int main()
 {
-	int value = 5;
+	/*int value = 5;
 	std::shared_ptr<Node> nod(new Node(value));
 	std::shared_ptr<Node> nodL(new Node(value-1));
 	std::shared_ptr<Node> nodR(new Node(value+1));
@@ -150,6 +150,13 @@ int main()
 	tree.print(nod);
 	bool rightColors = checkColors(nod);
 	std::cout << rightColors << std::endl;
-	std::cout << tree.getRoot()->getVal() << std::endl;
+	std::cout << tree.getRoot()->getVal() << std::endl;*/
+
+	assertSameValue();
+	assertDepth();
+	assertCorrectColoring(10);
+	assertCorrectNoOfElements(10);
+	assertEmptyPop();
+	assertValues();
 }
 
