@@ -1,17 +1,17 @@
 #include <memory>
 
-template <typename T> struct Node {
+struct Node {
 	bool isBlack;
 
-	std::shared_ptr<Node<T>> leftChild;
-	std::shared_ptr<Node<T>> rightChild;	
-	std::shared_ptr<Node<T>> parent;
+	std::shared_ptr<Node> leftChild;
+	std::shared_ptr<Node> rightChild;	
+	std::shared_ptr<Node> parent;
 
-	Node(T val) : value(val) {}
-	T getVal(){
+	Node(int val) : value(val) {}
+	int getVal(){
 		return value;
 	}
 	
 	private:
-		T value;
+		int value;
 };

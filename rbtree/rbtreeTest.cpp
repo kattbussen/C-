@@ -1,24 +1,27 @@
 #include <iostream>
+#include <set>
 #include <assert.h>
 #include "rbtree.h"
 
-//pop empty tree
-
-//insert x items, then pop and check that they are the same
-
-//helperFunction, creates tree<int> with N nodes
-std::shared_ptr<Node<int>> populateTree(int N)
+//************************************************
+// Help function. Creates a tree with N nodes.
+//************************************************
+Rbtree populateTree(int N)
 {
-	for(int i = 0; i < N; i++)
+	Rbtree tree(0);
+	for(int i = 1; i < N; i++)
 	{
-		Node<int> node(i);
+		Node node(i);
+		tree.push(node);
 	}
-	std::shared_ptr<Node<int>> p(new Node<int>(N));
-	return p;
+	return tree;
 }
 
-//check colors of tree, ie red node has only black children and so on
-bool checkColors(std::shared_ptr<Node<int>> node)
+//************************************************
+// Check colors of tree beginning with Node node. 
+// Ie red node has only black children and so on.
+//************************************************
+bool checkColors(std::shared_ptr<Node> node)
 {
 	bool parentCol = true;
 	bool currCol = false;
@@ -45,9 +48,9 @@ bool checkColors(std::shared_ptr<Node<int>> node)
 //************************************************
 void assertCorrectColoring(int N)
 {
-	std::shared_ptr<Node<int>> p = populateTree(N);
-	bool result = checkColors(p);
-	assert(result=true);
+	Rbtree tree = populateTree(N);
+	bool result = checkColors(tree.getRoot());
+	assert(result = true);
 }
 
 //************************************************
@@ -56,24 +59,84 @@ void assertCorrectColoring(int N)
 //************************************************
 void assertCorrectNoOfElements(int N)
 {
-	std::shared_ptr<Node<int>> p = populateTree(N);
-	//assert();
+	Rbtree tree = populateTree(N);
+	assert(N == tree.getElementCount());
 }
 
-int countElements(std::shared_ptr<Node<int>> node)
+//************************************************
+// Create a tree with one element.
+// Then check that the second pop returns null.
+//************************************************
+void assertEmptyPop()
 {
-	return 0;
+	Rbtree tree = populateTree(1);
+	std::shared_ptr<Node> root = tree.pop();
+	std::shared_ptr<Node> nod = tree.pop();
+
+	assert(nod == nullptr);
 }
 
-//check depth of tree, diff between min and max should be no more than 1
+//************************************************
+// Create a tree with set values.
+// Add the values to a set.
+// Remove values as they are popped.
+// Check that the set is empty.
+//************************************************
+void assertValues()
+{
+	Rbtree tree = populateTree(10);
+	std::set<int> valSet;
+
+	for(int i = 0; i < 10; i++)
+	{
+		valSet.insert(i);
+	}
+
+	std::shared_ptr<Node> p = tree.pop();
+	while(p != nullptr)
+	{
+		valSet.erase(p->getVal());
+		p = tree.pop();
+	}
+
+	assert(valSet.empty() == true);
+}
+
+//************************************************
+// Insert 10, 5 and 3 and check that depth=2
+//************************************************
+void assertDepth()
+{
+	Rbtree tree(10);
+	tree.push(5);
+	tree.push(3);
+
+	assert(tree.getDepth() == 2);
+}
+
+//************************************************
+// Insert 5 and 5 into a tree and assert that;
+// Number of elemets = 2.
+// root->leftChilds value is 5.
+//************************************************
+void assertSameValue()
+{
+	Rbtree tree(5);
+	tree.push(5);
+	std::shared_ptr<Node> root = tree.getRoot();
+	
+	assert(tree.getElementCount() == 2);
+	assert(root->leftChild != nullptr);
+	assert(root->leftChild->getVal() == 5);
+}
 
 
 int main()
 {
 	int value = 5;
-	std::shared_ptr<Node<int>> nod(new Node<int>(value));
-	std::shared_ptr<Node<int>> nodL(new Node<int>(value-1));
-	std::shared_ptr<Node<int>> nodR(new Node<int>(value+1));
+	std::shared_ptr<Node> nod(new Node(value));
+	std::shared_ptr<Node> nodL(new Node(value-1));
+	std::shared_ptr<Node> nodR(new Node(value+1));
 	
 	nod->isBlack = true;
 		
@@ -83,10 +146,10 @@ int main()
 	nodL->parent = nod;
 	nodR->parent = nod;
 
-	Rbtree tree;
+	Rbtree tree(5);
 	tree.print(nod);
 	bool rightColors = checkColors(nod);
 	std::cout << rightColors << std::endl;
-	//std::cout << tree.getRoot().getVal() << std::endl;
+	std::cout << tree.getRoot()->getVal() << std::endl;
 }
 

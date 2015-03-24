@@ -2,16 +2,19 @@
 #include "rbtree.h"
 
 //get root
-/*template <typename T> Node<T> Rbtree::getRoot()
+std::shared_ptr<Node> Rbtree::getRoot()
 {
-	return Rbtree<T>::root;
-}*/
+	return Rbtree::rootP;
+}
 
 //pop
-
+std::shared_ptr<Node> Rbtree::pop()
+{
+	return Rbtree::rootP;
+}
 
 //push
-template <typename T> void Rbtree::push(Node<T> node)
+void Rbtree::push(Node node)
 {
 }
 
@@ -21,8 +24,13 @@ int Rbtree::getElementCount()
 	return elementCount;
 }
 
+int Rbtree::getDepth()
+{
+	return depth;
+}
+
 //print
-template <typename T> void Rbtree::print(std::shared_ptr<Node<T>> node)
+void Rbtree::print(std::shared_ptr<Node> node)
 {
 	if(node->isBlack)
 		std::cout << "Tree contains a black node with value ";
@@ -42,6 +50,4 @@ template <typename T> void Rbtree::print(std::shared_ptr<Node<T>> node)
 }
 
 //needed to avoid linker errors
-template void Rbtree::print(std::shared_ptr<Node<int>> node);
-//template Rbtree<int>::Rbtree(int val);
-//template Node<int> Rbtree<int>::getRoot();
+//template void Rbtree<int>::print(std::shared_ptr<Node<int>> node);

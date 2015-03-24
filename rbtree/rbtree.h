@@ -3,18 +3,19 @@
 class Rbtree
 {
 	public:
-		//template <class T> Rbtree(T val) : {}
-//			rootP(new Node<T>(val)); 
-//			root = *rootP;
-//		}
+		Rbtree(int val) {
+			rootP = std::shared_ptr<Node>(new Node(val));
+		}
 	
-		template <class T> void push(Node<T> node);
-		template <class T> void print(std::shared_ptr<Node<T>> node);
+		void push(Node node);
+		std::shared_ptr<Node> pop();
+		void print(std::shared_ptr<Node> node);
 		int getElementCount();
-		//template <class T> Node<T> getRoot();
+		std::shared_ptr<Node> getRoot();
+		int getDepth();
 
 	private:	
-		//template <class T> Node<T> root;
-		//template <class T> std::shared_ptr<Node<T>> rootP;
+		std::shared_ptr<Node> rootP;
 		int elementCount;
+		int depth;
 };
