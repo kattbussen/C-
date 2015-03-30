@@ -1,5 +1,6 @@
 #include <iostream>
 #include <set>
+#include <limits>
 #include <assert.h>
 #include "rbtree.h"
 
@@ -9,10 +10,10 @@
 Rbtree populateTree(int N)
 {
 	Rbtree tree(0);
+	std::shared_ptr<Node> root = tree.getRoot();
 	for(int i = 1; i < N; i++)
 	{
-		Node node(i);
-		tree.push(node);
+		tree.insert(root, i);
 	}
 	return tree;
 }
@@ -65,13 +66,13 @@ void assertCorrectNoOfElements(int N)
 
 //************************************************
 // Create a tree with one element.
-// Then check that the second pop returns null.
+// Then check that the second del returns null.
 //************************************************
 void assertEmptyPop()
 {
 	Rbtree tree = populateTree(1);
-	std::shared_ptr<Node> root = tree.pop();
-	std::shared_ptr<Node> nod = tree.pop();
+	std::shared_ptr<Node> root = tree.del(0);
+	std::shared_ptr<Node> nod = tree.del(0);
 
 	assert(nod == nullptr);
 }
@@ -92,11 +93,11 @@ void assertValues()
 		valSet.insert(i);
 	}
 
-	std::shared_ptr<Node> p = tree.pop();
+	std::shared_ptr<Node> p = tree.del(tree.getRoot()->getVal());
 	while(p != nullptr)
 	{
 		valSet.erase(p->getVal());
-		p = tree.pop();
+		p = tree.del(tree.getRoot()->getVal());
 	}
 
 	assert(valSet.empty() == true);
@@ -108,8 +109,9 @@ void assertValues()
 void assertDepth()
 {
 	Rbtree tree(10);
-	tree.push(5);
-	tree.push(3);
+	std::shared_ptr<Node> root = tree.getRoot();
+	tree.insert(root, 5);
+	tree.insert(root, 3);
 
 	assert(tree.getDepth() == 2);
 }
@@ -122,13 +124,59 @@ void assertDepth()
 void assertSameValue()
 {
 	Rbtree tree(5);
-	tree.push(5);
 	std::shared_ptr<Node> root = tree.getRoot();
+	tree.insert(root, 5);
 	
 	assert(tree.getElementCount() == 2);
 	assert(root->leftChild != nullptr);
 	assert(root->leftChild->getVal() == 5);
 }
+
+//************************************************
+// Assert binary tree property.
+//************************************************
+bool checkProperty(std::shared_ptr<Node> node, int minValue, int maxValue)
+{
+	if(node == nullptr)
+		return true;
+
+	if(node->getVal() < minValue || node->getVal() > maxValue)
+		return false;
+
+	return checkProperty(node->leftChild, minValue, node->getVal()) && checkProperty(node->rightChild, node->getVal(), maxValue);
+}
+
+void assertBinaryProperty()
+{
+	Rbtree tree = populateTree(100);
+	//assert(checkProperty(tree.getRoot(), std::numeric_limits<int>::min(), std::numeric_limits<int>::max()) == true);
+}
+
+//************************************************
+// Assert binary tree property after deletion.
+//************************************************
+void assertPropAfterDelete()
+{
+	Rbtree tree = populateTree(100);
+	assert(checkProperty(tree.getRoot(), std::numeric_limits<int>::min(), std::numeric_limits<int>::max()) == true);
+	assert(checkColors(tree.getRoot()) == true);
+	tree.del(95);
+	assert(checkProperty(tree.getRoot(), std::numeric_limits<int>::min(), std::numeric_limits<int>::max()) == true);
+	assert(checkColors(tree.getRoot()) == true);
+}
+
+
+//************************************************
+//test search function
+//************************************************
+/*void assertSearch()
+{
+	Rbtree tree = populateTree(100);
+	for(int i = 0; i < 100; i++)
+	{
+		assert(tree.)
+	}
+}*/
 
 
 int main()
@@ -152,11 +200,30 @@ int main()
 	std::cout << rightColors << std::endl;
 	std::cout << tree.getRoot()->getVal() << std::endl;*/
 
-	assertSameValue();
+	/*assertSameValue();
 	assertDepth();
 	assertCorrectColoring(10);
 	assertCorrectNoOfElements(10);
 	assertEmptyPop();
 	assertValues();
+	assertBinaryProperty();
+	assertPropAfterDelete();
+	*/
+
+	Rbtree tree(0); //0-3-1
+	std::shared_ptr<Node> root = tree.getRoot();
+	tree.insert(root, 3);
+	tree.insert(root, 1);
+	//tree.insert(root, 3);
+	//tree.insert(root, 4);
+	root = tree.getRoot();
+	tree.print(root);
+	/*tree.insert(root, 3);
+	//tree.insert(root, 6);
+	tree.print(root);
+	*///assertBinaryProperty();
+
+	//tree.insert(root, 1);
+	//tree.print(root);
 }
 
