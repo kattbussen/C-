@@ -1,6 +1,23 @@
 #include <iostream>
+#include "insertionSort.h"
 
-void insertionSort()
+float timer = 0.0;
+		
+int* InsertionSort::sort(int arr[], int size)
 {
-	std::cout << "insertionSort." << std::endl;
+	std::cout << "a insertionSort." << std::endl;
+	return arr;
+}
+		
+float InsertionSort::getTime()
+{	
+	return timer;
+}
+
+void InsertionSort::startTimer()
+{
+}
+	
+void InsertionSort::stopTimer()
+{
 }
