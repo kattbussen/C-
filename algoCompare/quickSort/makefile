@@ -6,7 +6,7 @@ lib: *.cpp *.h
 	@mkdir -p lib
 	@g++ -std=c++11 -Wall -fPIC -c *.cpp
 	@g++ -shared -o lib/libQuickSort.so *.o
-	@echo "libQuickSirt Build successful."
+	@echo "libQuickSort build successful."
 
 clean:
 	@rm -f *.o
