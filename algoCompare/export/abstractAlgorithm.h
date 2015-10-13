@@ -20,7 +20,7 @@ class SortAlgorithm
 		* the sort function to complete.
 		*
 		*****************************************************************/
-		virtual float getTime() = 0;
+		virtual std::chrono::duration<double> getTime() = 0;
 
 	private:
 		/*****************************************************************
