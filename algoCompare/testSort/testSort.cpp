@@ -1,6 +1,6 @@
 #include <iostream>
 #include <chrono>
-#include "../insertionSort.h"
+#include "../insertionSort/insertionSort.h"
 
 bool testGetTime(SortAlgorithm* sort)
 {
