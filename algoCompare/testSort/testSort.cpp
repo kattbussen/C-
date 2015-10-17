@@ -82,12 +82,8 @@ int main()
 	std::cout << passed << " of " << noOfTests << " passed." << std::endl;
 	totPassed += passed;
 	passed = 0;
-	
-	std::cout << "#################################" << std::endl;
-	std::cout << "# Test done                     #" << std::endl;
-	std::cout << "#################################" << std::endl;
-	
 
+	
 	std::cout << "#################################" << std::endl;
 	std::cout << "# Testing QuickSort             #" << std::endl;
 	std::cout << "#################################" << std::endl;
@@ -103,10 +99,6 @@ int main()
 	totPassed += passed;
 	passed = 0;	
 
-	std::cout << "#################################" << std::endl;
-	std::cout << "# Test done                     #" << std::endl;
-	std::cout << "#################################" << std::endl;
-	
 
 	std::cout << "#################################" << std::endl;
 	std::cout << "# Testing SelectionSort         #" << std::endl;
