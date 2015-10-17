@@ -1,6 +1,8 @@
 #include <iostream>
 #include <chrono>
 #include "../insertionSort/insertionSort.h"
+#include "../quickSort/quickSort.h"
+#include "../selectionSort/selectionSort.h"
 
 bool testGetTime(SortAlgorithm* sort)
 {
@@ -51,24 +53,69 @@ bool testSort(SortAlgorithm* sort)
 int main()
 {
 	int passed = 0;
+	int totPassed = 0;
 	int noOfTests = 2;
+	int totNoOfTests = 6;
 
 
 	std::cout << "#################################" << std::endl;
 	std::cout << "# Testing InsertionSort         #" << std::endl;
 	std::cout << "#################################" << std::endl;
+	
 	InsertionSort inSort;
 	
 	if(testGetTime(&inSort))
 		passed++;
-
 	if(testSort(&inSort))
 		passed++;
 
 	std::cout << passed << " of " << noOfTests << " passed." << std::endl;
+	totPassed += passed;
+	passed = 0;
 	
 	std::cout << "#################################" << std::endl;
 	std::cout << "# Test done                     #" << std::endl;
 	std::cout << "#################################" << std::endl;
-}
+	
 
+	std::cout << "#################################" << std::endl;
+	std::cout << "# Testing QuickSort             #" << std::endl;
+	std::cout << "#################################" << std::endl;
+	
+	QuickSort qSort;
+	
+	if(testGetTime(&qSort))
+		passed++;
+	if(testSort(&qSort))
+		passed++;
+	
+	std::cout << passed << " of " << noOfTests << " passed." << std::endl;
+	totPassed += passed;
+	passed = 0;	
+
+	std::cout << "#################################" << std::endl;
+	std::cout << "# Test done                     #" << std::endl;
+	std::cout << "#################################" << std::endl;
+	
+
+	std::cout << "#################################" << std::endl;
+	std::cout << "# Testing SelectionSort         #" << std::endl;
+	std::cout << "#################################" << std::endl;
+	
+	SelectionSort selSort;
+	
+	if(testGetTime(&selSort))
+		passed++;
+	if(testSort(&selSort))
+		passed++;
+		
+	std::cout << passed << " of " << noOfTests << " passed." << std::endl;
+	totPassed += passed;
+	passed = 0;
+
+	std::cout << "#################################" << std::endl;
+	std::cout << "# Test done                     #" << std::endl;
+	std::cout << "#################################" << std::endl;
+	
+	std::cout << "Total: " << totPassed << " of " << totNoOfTests << " passed." << std::endl;
+}

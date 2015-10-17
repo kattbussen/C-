@@ -1,22 +1,23 @@
-VPATH = .:../insertionSort/
+CPPFLAGS := -std=c++11 -Wall
 
-.PHONY: all
-
-all: InsertionSort QuickSort SelectionSort testSort.cpp
-
-InsertionSort: insertionSort.cpp insertionSort.h
-	@g++ -std=c++11 -Wall testSort.cpp ../insertionSort/insertionSort.cpp -o runInsSortTest
-	@echo "InsertionSort built successfully."
-
-QuickSort:
-	@echo "quicksort."
-
-SelectionSort:
-	@echo "selectionSort."
+all: 
+	@${MAKE} -s -C ../insertionSort lib
+	@${MAKE} -s -C ../quickSort lib
+	@${MAKE} -s -C ../selectionSort lib
+	@mkdir -p lib
+	@cp -f ../insertionSort/lib/* lib/
+	@cp -f ../quickSort/lib/* lib/
+	@cp -f ../selectionSort/lib/* lib/
+	@g++ $(CPP_FLAGS) testSort.cpp -o runSortTest -lInsSort -lQuickSort -lSelSort -L${PWD}/lib
+	@echo "Build successful."
 
 run: all
-	@./runInsSortTest
-
+	@./runSortTest
+	
 clean:
-	@rm -f runInsSortTest
+	@${MAKE} -s -C ../insertionSort clean
+	@${MAKE} -s -C ../quickSort clean
+	@${MAKE} -s -C ../selectionSort clean
+	@rm -f runSortTest
+	@rm -rf lib
 	@echo "Clean successful."

@@ -1,15 +1,16 @@
 #include <limits.h>
 #include <chrono>
 #include <algorithm>
-#include "include/AbstractAlgorithm.h"
 
-class SelectionSort : SortAlgorithm
+#ifndef ABS_ALG
+#define ABS_ALG
+#include "include/AbstractAlgorithm.h"
+#endif
+
+class SelectionSort : public SortAlgorithm
 {
 	public:
 		int* sort(int[], int);
-		std::chrono::duration<double> getTime();
 
 	private:
-		void startTimer();
-		void stopTimer();
 };

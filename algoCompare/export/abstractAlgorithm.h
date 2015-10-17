@@ -27,7 +27,7 @@ class SortAlgorithm
 		*****************************************************************/
 		std::chrono::duration<double> getTime()
 		{
-			std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>> (stop - start);
+			std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double> > (stop - start);
 			return time_span;
 		}
 
