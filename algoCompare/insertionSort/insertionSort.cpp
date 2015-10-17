@@ -1,8 +1,5 @@
 #include "insertionSort.h"
 
-std::chrono::high_resolution_clock::time_point start;
-std::chrono::high_resolution_clock::time_point stop;
-		
 int* InsertionSort::sort(int arr[], int size)
 {
 	int sorted[size];
@@ -24,20 +21,4 @@ int* InsertionSort::sort(int arr[], int size)
 	
 	std::copy(sorted, sorted+size, arr);
 	return arr;
-}
-		
-std::chrono::duration<double> InsertionSort::getTime()
-{
-	std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>> (stop - start);
-	return time_span;
-}
-
-void InsertionSort::startTimer()
-{
-	start = std::chrono::high_resolution_clock::now();
-}
-	
-void InsertionSort::stopTimer()
-{
-	stop = std::chrono::high_resolution_clock::now();
 }

@@ -1,3 +1,4 @@
+#include <chrono>
 /*****************************************************************
 *
 * Abstract class.
@@ -6,6 +7,10 @@
 *****************************************************************/
 class SortAlgorithm
 {
+	private:
+		std::chrono::high_resolution_clock::time_point start;
+		std::chrono::high_resolution_clock::time_point stop;	
+
 	public:
 		/*****************************************************************
 		*
@@ -20,16 +25,22 @@ class SortAlgorithm
 		* the sort function to complete.
 		*
 		*****************************************************************/
-		virtual std::chrono::duration<double> getTime() = 0;
+		std::chrono::duration<double> getTime()
+		{
+			std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>> (stop - start);
+			return time_span;
+		}
 
-	private:
 		/*****************************************************************
 		*
 		*	This function should be called immediately when 'sort' is called.
 		* It should start a timer to keep track of the running time of sort. 
 		*
 		*****************************************************************/
-		virtual void startTimer() = 0;
+		void startTimer()
+		{
+			start = std::chrono::high_resolution_clock::now();
+		}
 		
 		/*****************************************************************
 		*
@@ -37,5 +48,8 @@ class SortAlgorithm
 		* the timer that is running.
 		*
 		*****************************************************************/
-		virtual void stopTimer() = 0;
+		void stopTimer()
+		{
+			stop = std::chrono::high_resolution_clock::now();
+		}
 };

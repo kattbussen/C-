@@ -2,18 +2,17 @@
 #include <chrono>
 #include "../insertionSort.h"
 
-bool testGetTime()
+bool testGetTime(SortAlgorithm* sort)
 {
-	InsertionSort inSort;
 	std::chrono::duration<double> time;
 	int size = 1000;
 	int arr[size];	
 
 	for(int i = 0; i < size; i++)
 		arr[i] = rand() % 100 + 1;
-	inSort.sort(arr, size);
-
-	time = inSort.getTime();
+	
+	sort->sort(arr, size);
+	time = sort->getTime();
 	
 	if(time != std::chrono::high_resolution_clock::duration::zero())
 	{
@@ -27,16 +26,15 @@ bool testGetTime()
 	}
 }
 
-bool testSort()
+bool testSort(SortAlgorithm* sort)
 {
-	InsertionSort inSort;
 	int size = 100;
 	int arr[size];
 	
 	for(int i = 0; i < size; i++)
 		arr[i] = rand() % 100 + 1;
 	
-	inSort.sort(arr, size);
+	sort->sort(arr, size);
 
 	for(int i = 0; i < size-1; i++)
 	{
@@ -55,12 +53,22 @@ int main()
 	int passed = 0;
 	int noOfTests = 2;
 
-	if(testGetTime())
+
+	std::cout << "#################################" << std::endl;
+	std::cout << "# Testing InsertionSort         #" << std::endl;
+	std::cout << "#################################" << std::endl;
+	InsertionSort inSort;
+	
+	if(testGetTime(&inSort))
 		passed++;
 
-	if(testSort())
+	if(testSort(&inSort))
 		passed++;
 
 	std::cout << passed << " of " << noOfTests << " passed." << std::endl;
+	
+	std::cout << "#################################" << std::endl;
+	std::cout << "# Test done                     #" << std::endl;
+	std::cout << "#################################" << std::endl;
 }
 
