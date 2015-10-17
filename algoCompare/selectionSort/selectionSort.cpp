@@ -1,5 +1,4 @@
 #include "selectionSort.h"
-#include <iostream>
 
 int* SelectionSort::sort(int arr[], int size)
 {
