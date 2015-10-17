@@ -1,16 +1,27 @@
-#ifndef sSort_H
-#define sSort_H
 #include "selectionSort.h"
-#endif
+#include <iostream>
 
 int* SelectionSort::sort(int arr[], int size)
 {
-	int sorted[size];
-
 	startTimer();
+
+	for(int i = 0; i < size; i++)
+	{
+		int min = INT_MAX;
+		int minPos = 0;
+		for(int j = i; j < size; j++)
+		{
+			if(arr[j] < min)
+			{
+				min = arr[j];
+				minPos = j;
+			}
+		}
+		arr[minPos] = arr[i];
+		arr[i] = min;
+	}
 	
 	stopTimer();
 	
-	std::copy(sorted, sorted+size, arr);
 	return arr;
 }

@@ -4,6 +4,14 @@
 #include "../quickSort/quickSort.h"
 #include "../selectionSort/selectionSort.h"
 
+void printArray(int arr[], int size)
+{
+	for(int i = 0; i < size; i++)
+		std::cout << arr[i] << " ";
+
+	std::cout << std::endl;
+}
+
 bool testGetTime(SortAlgorithm* sort)
 {
 	std::chrono::duration<double> time;
@@ -30,13 +38,15 @@ bool testGetTime(SortAlgorithm* sort)
 
 bool testSort(SortAlgorithm* sort)
 {
-	int size = 100;
+	int size = 10;
 	int arr[size];
 	
 	for(int i = 0; i < size; i++)
 		arr[i] = rand() % 100 + 1;
-	
+
+	printArray(arr, size);	
 	sort->sort(arr, size);
+	printArray(arr, size);
 
 	for(int i = 0; i < size-1; i++)
 	{
