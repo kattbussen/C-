@@ -1,5 +1,10 @@
 #include "quickSort.h"
 
+/************************************************
+*
+* The private recursive function for quickSort. 
+*
+************************************************/
 void QuickSort::quickRecurse(int arr[], int from, int to)
 {
 	int pivot = arr[(from + to) / 2];
@@ -31,6 +36,12 @@ void QuickSort::quickRecurse(int arr[], int from, int to)
 		quickRecurse(arr, left, to);
 }
 
+/************************************************
+*
+* Implements quickSort and measures the time
+* it takes to sort the given array of integers.
+*
+************************************************/
 int* QuickSort::sort(int arr[], int size)
 {
 	startTimer();

@@ -1,5 +1,11 @@
 #include "selectionSort.h"
 
+/************************************************
+*
+* Implements selectionSort and measures the time
+* it takes to sort the given array of integers.
+*
+************************************************/
 int* SelectionSort::sort(int arr[], int size)
 {
 	startTimer();

@@ -1,10 +1,12 @@
+CPP_FLAGS := -std=c++11 -Wall
+
 all: compareSort.cpp  
 	@${MAKE} -s -C insertionSort lib
 	@${MAKE} -s -C quickSort lib
 	@${MAKE} -s -C selectionSort lib
 	@mkdir -p lib
 	@cp */lib/* lib/
-	@g++ -std=c++11 -Wall *.cpp -o compareSort -lInsSort -lQuickSort -lSelSort -L${PWD}/lib
+	@g++ $(CPP_FLAGS) *.cpp -o compareSort -lInsSort -lQuickSort -lSelSort -L${PWD}/lib
 	@echo "Build successful."
 
 clean:
