@@ -10,7 +10,8 @@
 class QuickSort : public SortAlgorithm
 {
 	public:
-		int* sort(int[], int);
+		int* sort(int arr[], int size);
 
 	private:
+		void quickRecurse(int arr[], int to, int from);
 };

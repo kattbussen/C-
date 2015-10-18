@@ -9,7 +9,7 @@
 class InsertionSort : public SortAlgorithm
 {
 	public:
-		int* sort(int[], int);
+		int* sort(int arr[], int size);
 
 	private:
 };

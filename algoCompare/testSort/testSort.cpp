@@ -38,15 +38,13 @@ bool testGetTime(SortAlgorithm* sort)
 
 bool testSort(SortAlgorithm* sort)
 {
-	int size = 10;
+	int size = 1000;
 	int arr[size];
 	
 	for(int i = 0; i < size; i++)
 		arr[i] = rand() % 100 + 1;
 
-	printArray(arr, size);	
 	sort->sort(arr, size);
-	printArray(arr, size);
 
 	for(int i = 0; i < size-1; i++)
 	{
