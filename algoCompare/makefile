@@ -9,6 +9,9 @@ all: compareSort.cpp
 	@g++ $(CPP_FLAGS) *.cpp -o compareSort -lInsSort -lQuickSort -lSelSort -L${PWD}/lib
 	@echo "Build successful."
 
+run: all
+	@./compareSort
+
 clean:
 	@${MAKE} -s -C insertionSort clean
 	@${MAKE} -s -C quickSort clean
