@@ -4,6 +4,12 @@
 #include "../quickSort/quickSort.h"
 #include "../selectionSort/selectionSort.h"
 
+/*****************************************************
+*
+* Help function. Not used in acctual tests.
+* Just prints an array.
+*
+*****************************************************/
 void printArray(int arr[], int size)
 {
 	for(int i = 0; i < size; i++)
@@ -12,6 +18,13 @@ void printArray(int arr[], int size)
 	std::cout << std::endl;
 }
 
+/*****************************************************
+*
+* Test the getTime function.
+* Basic test, just checks that getTime returns
+* a non-zero value.
+*
+*****************************************************/
 bool testGetTime(SortAlgorithm* sort)
 {
 	std::chrono::duration<double> time;
@@ -36,7 +49,15 @@ bool testGetTime(SortAlgorithm* sort)
 	}
 }
 
-bool testSort(SortAlgorithm* sort)
+/*****************************************************
+*
+* Test the sort function.
+* Checks that given an array, the sort function
+* returns an array where each value is smaller or equal
+* to its predecessor.
+*
+*****************************************************/
+bool testSortOrder(SortAlgorithm* sort)
 {
 	int size = 1000;
 	int arr[size];
@@ -58,12 +79,64 @@ bool testSort(SortAlgorithm* sort)
 	return true;
 }
 
+/*****************************************************
+*
+* Test the sort function.
+* Checks that given an array, the sort function
+* returns an array where each value is still represented.
+*
+*****************************************************/
+bool testSortContent(SortAlgorithm* sort)
+{
+	int size = 100;
+	int arr[size];
+	int arrCopy[size];
+	int checkSum = 0;	
+
+	for(int i = 0; i < size; i++)
+	{
+		arr[i] = rand() % 100 + 1;
+		arrCopy[i] = arr[i];
+	}
+
+	sort->sort(arr, size);
+
+	for(int i = 0; i < size; i++)
+	{
+		for(int j = 0; j < size; j++)
+		{
+			if(arr[j] == arrCopy[i])
+			{
+				arrCopy[i] = 0;
+				break;
+			}
+		}
+	}
+
+	for(int i = 0; i < size; i++)
+	{
+		checkSum += arrCopy[i];
+	}
+	
+	if(checkSum != 0)
+		return false;
+	else
+		return true;
+}
+
+/*****************************************************
+*
+* Main function.
+* Runs the two tests above for the three implemented
+* sorting algorithms and summarises the result. 
+*
+*****************************************************/
 int main()
 {
 	int passed = 0;
 	int totPassed = 0;
-	int noOfTests = 2;
-	int totNoOfTests = 6;
+	int noOfTests = 3;
+	int totNoOfTests = 9;
 
 
 	std::cout << "#################################" << std::endl;
@@ -74,7 +147,9 @@ int main()
 	
 	if(testGetTime(&inSort))
 		passed++;
-	if(testSort(&inSort))
+	if(testSortOrder(&inSort))
+		passed++;
+	if(testSortContent(&inSort))
 		passed++;
 
 	std::cout << passed << " of " << noOfTests << " passed." << std::endl;
@@ -90,7 +165,9 @@ int main()
 	
 	if(testGetTime(&qSort))
 		passed++;
-	if(testSort(&qSort))
+	if(testSortOrder(&qSort))
+		passed++;
+	if(testSortContent(&qSort))
 		passed++;
 	
 	std::cout << passed << " of " << noOfTests << " passed." << std::endl;
@@ -106,7 +183,9 @@ int main()
 	
 	if(testGetTime(&selSort))
 		passed++;
-	if(testSort(&selSort))
+	if(testSortOrder(&selSort))
+		passed++;
+	if(testSortContent(&selSort))
 		passed++;
 		
 	std::cout << passed << " of " << noOfTests << " passed." << std::endl;
