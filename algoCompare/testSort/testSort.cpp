@@ -6,20 +6,6 @@
 
 /*****************************************************
 *
-* Help function. Not used in acctual tests.
-* Just prints an array.
-*
-*****************************************************/
-void printArray(int arr[], int size)
-{
-	for(int i = 0; i < size; i++)
-		std::cout << arr[i] << " ";
-
-	std::cout << std::endl;
-}
-
-/*****************************************************
-*
 * Test the getTime function.
 * Basic test, just checks that getTime returns
 * a non-zero value.
@@ -114,9 +100,7 @@ bool testSortContent(SortAlgorithm* sort)
 	}
 
 	for(int i = 0; i < size; i++)
-	{
 		checkSum += arrCopy[i];
-	}
 	
 	if(checkSum != 0)
 		return false;

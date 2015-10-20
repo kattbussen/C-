@@ -6,7 +6,6 @@
 * it takes to sort the given array of integers.
 *
 ************************************************/
-
 void InsertionSort::sort(int arr[], int size)
 {
 	int sorted[size];
