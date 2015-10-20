@@ -17,7 +17,7 @@ class SortAlgorithm
 		* This function should sort the array it gets as its argument.
 		*
 		*****************************************************************/
-		virtual int* sort(int[], int size) = 0;
+		virtual void sort(int[], int size) = 0;
 		
 		/*****************************************************************
 		*

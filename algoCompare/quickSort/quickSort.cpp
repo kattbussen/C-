@@ -42,11 +42,9 @@ void QuickSort::quickRecurse(int arr[], int from, int to)
 * it takes to sort the given array of integers.
 *
 ************************************************/
-int* QuickSort::sort(int arr[], int size)
+void QuickSort::sort(int arr[], int size)
 {
 	startTimer();
 	quickRecurse(arr, 0, size-1);	
 	stopTimer();
-	
-	return arr;
 }

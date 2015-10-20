@@ -7,7 +7,7 @@
 *
 ************************************************/
 
-int* InsertionSort::sort(int arr[], int size)
+void InsertionSort::sort(int arr[], int size)
 {
 	int sorted[size];
 
@@ -32,5 +32,4 @@ int* InsertionSort::sort(int arr[], int size)
 	stopTimer();
 	
 	std::copy(sorted, sorted+size, arr);
-	return arr;
 }

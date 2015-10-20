@@ -6,7 +6,7 @@
 * it takes to sort the given array of integers.
 *
 ************************************************/
-int* SelectionSort::sort(int arr[], int size)
+void SelectionSort::sort(int arr[], int size)
 {
 	startTimer();
 
@@ -27,6 +27,4 @@ int* SelectionSort::sort(int arr[], int size)
 	}
 	
 	stopTimer();
-	
-	return arr;
 }
