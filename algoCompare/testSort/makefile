@@ -1,4 +1,4 @@
-CPPFLAGS := -std=c++11 -Wall
+CPPFLAGS := -Wall -Werror
 
 all: 
 	@${MAKE} -s -C ../insertionSort lib

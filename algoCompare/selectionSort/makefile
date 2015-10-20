@@ -1,4 +1,4 @@
-CPP_FLAGS := -std=c++11 -Wall
+CPP_FLAGS := -Wall -Werror
 
 all: *.cpp *.h
 	@g++ $(CPP_FLAGS) -c *.cpp

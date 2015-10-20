@@ -1,4 +1,4 @@
-CPP_FLAGS := -std=c++11 -Wall
+CPP_FLAGS := -Wall -Werror
 
 all: compareSort.cpp  
 	@${MAKE} -s -C insertionSort lib
