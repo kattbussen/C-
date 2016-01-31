@@ -1,0 +1,11 @@
+CC = gcc
+LIBFLAG = -L. -lpower -Wl,-rpath,.
+
+all:	test_power
+
+test_power:	test_power.c libpower.so
+		$(CC) -g -Wall -ansi -o test_power test_power.c $(LIBFLAG)
+
+libpower.so:	power.c power.h 
+		$(CC) -g -c -fPIC power.c
+		$(CC) -shared -fPIC -g -o libpower.so power.o

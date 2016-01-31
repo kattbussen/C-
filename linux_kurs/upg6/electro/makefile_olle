@@ -1,0 +1,33 @@
+lib: libcomponent.so libpower.so libresistance.so
+
+libcomponent.so: component/component.c component/component.h
+	@gcc -fPIC -c component/component.c -o component/component.o
+	@gcc -shared  -o component/libcomponent.so component/component.o
+
+libpower.so: power/power.c power/power.h
+	@gcc -fPIC -c power/power.c -o power/power.o
+	@gcc -shared  -o power/libpower.so power/power.o
+
+libresistance.so: resistance/libresistance.c  resistance/libresistance.h
+	@gcc -fPIC -c resistance/libresistance.c -o resistance/resistance.o
+	@gcc -shared  -o resistance/libresistance.so resistance/resistance.o
+
+all: lib electrotest.c
+	@mkdir -p lib
+	@mv -fu resistance/*.so component/*.so power/*.so lib/
+	@gcc electrotest.c -o electrotest -Wl,-rpath=${PWD}/lib -lpower -lresistance -lcomponent -L${PWD}/lib
+
+install: all
+	@sudo cp -f lib/* /usr/bin/
+	@gcc electrotest.c -o electrotest -Wl,-rpath=/usr/bin -lpower -lresistance -lcomponent -L/usr/bin
+	@sudo cp -f electrotest /usr/bin
+
+uninstall:
+	@sudo rm -f /usr/bin/libpower.so /usr/bin/libresistance.so /usr/bin/libcomponent.so
+	@sudo rm -f /usr/bin/electrotest
+
+clean:
+	@rm -rf lib
+	@rm -f */*.o */*.so
+	@rm electrotest
+

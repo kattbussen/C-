@@ -1,0 +1,21 @@
+CC = gcc
+LIBFLAG = -L. -lpower -Wl,-rpath,.
+
+all:	lib
+# gcc -shared -o c.so -Wl,--whole-archive a.a b.a -Wl,--no-whole-archiveXS
+
+#electrotest:	electrotest.c libpower.so
+#		$(CC) -g -Wall -ansi -o electrotest electrotest.c $(LIBFLAG)
+
+lib:	power.o 
+	$(CC) -shared -fPIC -o libpower.so power.o 
+	cp -f libpower.so ../lib/libpower.so 
+#	@if ! [ -f ../lib/libpower.so ]; \
+#	then\
+#		$(CC) -shared -fPIC -o libpower.so power.o &&\
+#		mv libpower.so ../lib/libpower.so ;\
+#	fi
+
+power.o: power.c power.h
+	$(CC) -c -fPIC power.c
+

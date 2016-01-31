@@ -1,0 +1,19 @@
+************************************
+* Del A - GDB
+************************************
+Det som saknas i Makefile är '-g' på rad 10.
+
+Jag satte breakpoint på main med 'b main' och stegade in i funktionen test med 's'.
+Så fort variabeln *test hade blivit allokerad skrev jag ut den med 'print *test' och såg att den var fylld med skräp.
+Efter for-loopen skrev jag ut den igen och såg att första arrayen hade 0-16 och att värde 17 hamnat i buffert2.
+När dom två värdena satts i buffert2 kunde jag se att värdet 17 skrivits över, återigen med 'print *test'.
+Efter jag stegade vidare och kom till första printf anropet skrev jag 'list' och märkte då att andra printf-anropet också använde buffert1.
+
+För att rätta upp koden gjorde jag buffert1 till storlek 17 och bytte anropen i andra printf till buffert2.
+
+************************************
+* Del B - Trace
+************************************
+Den förväntar sig en fil som heter data.txt. Den returnerar -1, som skrivs ut som 255.
+Efter att data är tillagd får den fildeskriptor 3 och returnerar 0.
+

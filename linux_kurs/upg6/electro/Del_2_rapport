@@ -1,0 +1,40 @@
+------------------------------------------------------------
+Kopiera nedan del och lägg in i eran rapport när den är klar
+------------------------------------------------------------
+
+Del 2 gemensam del av rapport
+
+Beskrivning av huvudprogrammet
+
+Ett huvudprogram skrevs för att använda sig av biblioteken.
+Programmet frågar användaren om olika komponenter
+
+
+Beskrivning av länkning
+
+För att länka ihop alla tre biblioteken så användes en makefile.
+Makefilen kompilerar respektive kod (.c) till objekt (.o) som sedan används för att skapa bibliotek (.so). Kommandot "gcc" används för att göra detta. Olika växlar används till "gcc". Nedan följer en beskrivning av dem. 
+
+-fPIC
+PIC är en förkortning för Position Independent Code. Växeln behövs för att kompilera kod så att den är plats oberoende, vilket är ett krav för ett delat bibliotek.
+
+-c
+Denna växel används för att kompilera kod utan att länka.
+
+-o
+Växeln används om man vill kompilera output till ett specifikt namn.
+
+-shared
+Är en växel som används när man vill göra ett delat bibliotek. Detta gör det möjligt att länka biblioteket med andra bibliotek.
+
+-Wl
+Används när man vill passera ett argument till linkern.
+
+
+
+
+mkdir -p
+mv -fu
+cp -f
+rm -f
+
