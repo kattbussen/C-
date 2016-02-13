@@ -1,3 +1,24 @@
+/*================================================================================
+Datorer och programmering, DoP, 10 hsp, termin/år: 2016
+
+Inlämningsuppgift nr 6B
+
+Namn: Olle Claeson
+
+Personummer: 820710-2750
+
+Den fil som jag lämnar in går att kompilera och
+programmet fungerar för alla de testdata som finns för uppgiften: Ja
+
+Jag har använt kompilator/editor (namn/version): xcode / 7.2
+s
+Jag har använt följande dator (t.ex. PC, Mac, Annat): Mac
+      med operativsystemet (t.ex. WindowsXP, Windows7,...) : El Capitan / 10.11.2
+
+Jag har arbetat ungefär 6 timmar med denna uppgift
+
+================================================================================
+*/
 #include <iostream>
 #include <string>
 #include <fstream>
