@@ -9,8 +9,6 @@ using namespace std;
 /******************
 * Global Constants
 ******************/
-const int MAX_PERSONER = 10;
-const int MAX_TRANSAKTIONER = 30;
 
 /******************
 * Pre-class declarations
@@ -31,7 +29,6 @@ class Transaktion
 		string namn;
 		double belopp;
 		int ant_kompisar;
-		//string kompisar[MAX_PERSONER];
 		string *kompisar;
 
 	public:	
@@ -55,7 +52,6 @@ class TransaktionsLista
 	public:
 		TransaktionsLista();
 		~TransaktionsLista();
-		void kopieraTransaktioner(Transaktion *nyLista);
 		void laesin(istream &is);
 		void laesin_single(istream &is);
 		void skrivut(ostream &os);
@@ -76,6 +72,7 @@ class Person
 	public:
 		Person();
 		Person(string n, double b, double s);
+		Person& operator=(const Person &p);
 		string haemta_namn();
 		double haemta_betalat();
 		double haemta_skyldig();
@@ -86,11 +83,12 @@ class PersonLista
 {
 	private:
 		int antal_pers;
-		Person pers[MAX_PERSONER];
+		Person *pers;
 	
 	public:
 		PersonLista();
 		~PersonLista();
+		PersonLista& operator=(const PersonLista &pl);
 		void laggTillEn(Person pny);
 		void skrivUtOchFixa();
 		double summaSkyldig();
@@ -103,6 +101,12 @@ class PersonLista
 ******************/
 Transaktion::Transaktion()
 {
+	datum = "";
+	typ = "";
+	namn = "";
+	belopp = -1;
+	ant_kompisar = -1;
+	kompisar = 0;
 }
 
 Transaktion::~Transaktion()
@@ -189,6 +193,7 @@ void Transaktion::skrivEnTrans(ostream &os)
 
 TransaktionsLista::TransaktionsLista()
 {
+	antalTrans = 0;
 	trans = new Transaktion[antalTrans];
 }
 
@@ -197,13 +202,6 @@ TransaktionsLista::~TransaktionsLista()
 	delete[] trans;
 }
 
-void TransaktionsLista::kopieraTransaktioner(Transaktion *nyLista)
-{
-	for(int i = 0; i < antalTrans; i++)
-	{	
-		nyLista[i] = trans[i];
-	}
-}
 void TransaktionsLista::laesin(istream &is)
 {
 	Transaktion t;
@@ -227,29 +225,14 @@ void TransaktionsLista::skrivut(ostream &os)
 
 void TransaktionsLista::laggTill(Transaktion &t)
 {
-	//t.skrivEnTrans(cout);
 	Transaktion *nt = new Transaktion[antalTrans+1];
 	for(int i = 0; i < antalTrans; i++)
-	{
-		cout << "copying " << i << endl;
 		nt[i] = trans[i];
-	}
-	//cout << "pre assign" << endl;
+	
 	nt[antalTrans] = t;
-	//cout << "post assign" << endl;
 	antalTrans++;
 	delete[] trans;
-	trans = new Transaktion[antalTrans];
-	for(int i = 0; i < antalTrans; i++)
-	{
-		//cout << "copy back " << i << endl;
-		trans[i] = nt[i];
-	}	
-	delete[] nt;	
-
-	cout << "------------" << endl;
-	skrivut(cout);
-	cout << "------------" << endl;
+	trans = nt;
 }
 
 double TransaktionsLista::totalkostnad()
@@ -313,6 +296,9 @@ PersonLista TransaktionsLista::fixaPersoner()
 
 Person::Person()
 {
+	namn = "";
+	betalat_andras = -1;
+	skyldig = -1;
 }
 
 Person::Person(string n, double b, double s)
@@ -320,6 +306,17 @@ Person::Person(string n, double b, double s)
 	namn = n;
 	betalat_andras = b;
 	skyldig = s;
+}
+
+Person& Person::operator=(const Person &p)
+{
+	if(this != &p)
+	{
+		namn = p.namn;
+		betalat_andras = p.betalat_andras;
+		skyldig = p.skyldig;
+	}
+	return *this;
 }
 
 string Person::haemta_namn()
@@ -351,24 +348,50 @@ void Person::skrivUt()
 PersonLista::PersonLista()
 {
 	antal_pers = 0;
+	pers = new Person[antal_pers];
 }
 
 PersonLista::~PersonLista()
 {
+	delete[] pers;
+}
+
+PersonLista& PersonLista::operator=(const PersonLista &pl)
+{
+	if(this != &pl)
+	{
+		delete[] pers;
+		antal_pers = pl.antal_pers;
+		pers = new Person[antal_pers];
+		for(int i = 0; i < antal_pers; i++)
+			pers[i] = pl.pers[i];
+	}
+	return *this;
 }
 
 void PersonLista::laggTillEn(Person pny)
 {
-	pers[antal_pers] = pny;
+	Person *temp = new Person[antal_pers+1];
+	for(int i = 0; i < antal_pers; i++)
+	{
+		temp[i] = pers[i];
+	}	
+	delete[] pers;
+	string n = pny.haemta_namn();
+	double b = pny.haemta_betalat();
+	double s = pny.haemta_skyldig();
+	Person *p = new Person(n, b, s);	
+	temp[antal_pers] = *p;
 	antal_pers++;
+	pers = temp;
 }
 
 void PersonLista::skrivUtOchFixa()
 {
 	double summaIn = 0;
 	double summaUt = 0;
-	double tmp = 0;
-		
+	double tmp = 0;	
+	
 	for(int i = 0; i < antal_pers; i++)
 	{
 		pers[i].skrivUt();
@@ -491,17 +514,6 @@ int main()
 				skrivMeny();
 		}
 	}
-
-	int num;
-	cin >> num;
 	
-	int *arr = new int[num];
-
-	for(int i = 0; i < num; i++)
-	{
-		cout << arr[i];
-	}
-
 	return 0;
 }
-
