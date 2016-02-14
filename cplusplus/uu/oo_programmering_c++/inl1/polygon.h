@@ -8,6 +8,11 @@ class Polygon
 	private:
 		Vertex *vertArray;
 		int numberOfVertices;		
+		int maxX;
+		int maxY;
+		int minX;
+		int minY;
+		void compareMinMax(Vertex ver);
 	
 	public:
 		Polygon();
@@ -20,4 +25,5 @@ class Polygon
 		int miny();
 		int maxy();
 		int numVertices();
+		void printVer();
 };
