@@ -181,7 +181,6 @@ bool Transaktion::laesEnTrans(istream &is)
 	int counter = 0;
 	string trans = "";
 	string bla = "";
-	delete[] kompisar; 
 
 	is >> datum;
  
@@ -193,6 +192,7 @@ bool Transaktion::laesEnTrans(istream &is)
   is >> belopp;
   is >> ant_kompisar;
 
+	delete[] kompisar; 
 	kompisar  = new string[ant_kompisar]; 
   for(int i = 0; i < ant_kompisar; i++)
     is >> kompisar[i];
@@ -540,3 +540,14 @@ int main()
 	
 	return 0;
 }
+/*================================================================================
+- Den används i funktionen laggTill och behövs för att se till att alla värden i en transaktion kopieras över korrekt.
+  För att få en sk. deep copy.
+
+- Det är en koll för att se om man försöker kopiera sig själv, gör man detta kan man bara returnera sig själv och behöver
+	inte kopiera över värden m.m.
+
+*/
+
+
+
