@@ -13,13 +13,14 @@ int main()
   Vertex varr[] = { Vertex(0,0), Vertex(6,0), 
                     Vertex(6,6), Vertex(0,6) };
   Polygon pol( varr, 4 );
-  cout << "num:  " <<  pol.numVertices() << endl;
+
+	cout << "num:  " <<  pol.numVertices() << endl;
   cout << "yta:  " <<  pol.area() << endl;
   cout << "minx: " <<  pol.minx() << endl;
   cout << "maxx: " <<  pol.maxx() << endl;
   cout << "miny: " <<  pol.miny() << endl;
   cout << "maxy: " <<  pol.maxy() << endl;
-
+	
   pol.add( Vertex(-1,3) );
   cout << "num:  " <<  pol.numVertices() << endl;
   cout << "yta:  " <<  pol.area() << endl;

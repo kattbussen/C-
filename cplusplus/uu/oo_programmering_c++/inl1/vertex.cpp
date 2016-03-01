@@ -5,6 +5,8 @@
 
 Vertex::Vertex()
 {
+	xPos = 0;
+	yPos = 0;
 }
 
 Vertex::Vertex(int x, int y)
@@ -26,3 +28,13 @@ int Vertex::getYpos()
 {
 	return yPos;
 }
+
+/*Vertex& Vertex::operator=(const Vertex &v)
+{
+	if(this != &v)
+	{
+		xPos = v.xPos;
+		yPos = v.yPos;
+	}
+	return *this;
+}*/

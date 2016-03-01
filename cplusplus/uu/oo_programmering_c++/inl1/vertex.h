@@ -10,4 +10,5 @@ class Vertex
 		~Vertex();
 		int getXpos();
 		int getYpos();
+		//Vertex& operator=(const Vertex &v);
 };

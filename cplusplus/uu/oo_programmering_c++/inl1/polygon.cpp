@@ -15,10 +15,14 @@ Polygon::Polygon()
 
 Polygon::Polygon(Vertex *vertArr, int noVertices)
 {
-	numberOfVertices = noVertices;
-	vertArray = new Vertex[numberOfVertices];
-	for(int i = 0; i < numberOfVertices; i++)
-		compareMinMax(vertArr[i]);
+	numberOfVertices = 0;
+	minX = INT_MAX;
+	minY = INT_MAX;
+	maxX = 0;
+	maxY = 0;
+	vertArray = new Vertex[noVertices];
+	for(int i = 0; i < noVertices; i++)
+		add(vertArr[i]);
 }
 
 Polygon::~Polygon()
@@ -107,15 +111,3 @@ void Polygon::printVer()
 	}
 }
 
-/*int main()
-{
-	Polygon p;
-	Vertex v(1,1);
-	p.add(v);
-	p.printVer();
-	Vertex v2(2,2);
-	p.add(v2);
-	p.printVer();
-
-	return 0;
-}*/
