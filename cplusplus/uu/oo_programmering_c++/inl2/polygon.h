@@ -1,4 +1,5 @@
 #include "vertex.h"
+#include <iostream>
 
 #ifndef POLYGON_H
 #define POLYGON_H
@@ -20,8 +21,10 @@ class Polygon
 		~Polygon();
 		Polygon& operator=(const Polygon &p);
 		Polygon(const Polygon &p);
+		bool operator>(const Polygon &s);
+		std::ostream& operator<<(std::ostream &output);
 		void add(Vertex ver);
-		double area();
+		double area() const;
 		int minx();
 		int maxx();
 		int miny();

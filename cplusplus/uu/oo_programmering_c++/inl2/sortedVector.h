@@ -20,19 +20,19 @@ template <class T, int size> class SortedVector
 
 		bool add(const T& v)
 		{
-			if(noElements < (size-1) )
+			if(noElements < (size) )
 			{
 				for(int i = 0; i < noElements; i++)
 				{
 					if(vec[i] > v)
-					{	
+					{
 						T tmp = vec[i];
 						T tmp2;
 						vec[i] = v;
 						for(int j = i; j < noElements-1; j++)
-						{	
-							tmp2 = vec[i+1];
-							vec[i+1] = tmp;
+						{
+							tmp2 = vec[j+1];
+							vec[j+1] = tmp;
 							tmp = tmp2;
 						}
 						vec[noElements] = tmp;
@@ -40,7 +40,7 @@ template <class T, int size> class SortedVector
 						return true;				
 					}
 				}
-
+				
 				vec[noElements] = v;
 				noElements++;
 				return true;
@@ -60,12 +60,15 @@ template <class T, int size> class SortedVector
 			{
 				if(vec[i] > v)
 					vec[i] = 0;
+					noElements--;
 			}
 		}
 	
 		void print(ostream &os)
 		{
 			for(int i = 0; i < noElements; i++)
-				std::cout << vec[i] << std::endl;
+			{	
+				os << vec[i] << std::endl;
+			}
 		}
 };

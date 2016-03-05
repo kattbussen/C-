@@ -62,6 +62,16 @@ Polygon::Polygon(const Polygon &p)
 	}
 }
 
+bool Polygon::operator>(const Polygon &s)
+{
+	return this->area() > s.area();
+}
+
+std::ostream& Polygon::operator<<(std::ostream &output)
+{
+	return output << "hej" << std::endl;
+}
+
 void Polygon::compareMinMax(Vertex ver)
 {
 	int tmpX = ver.getXpos();
@@ -91,7 +101,7 @@ void Polygon::add(Vertex ver)
 	compareMinMax(ver);
 }
 
-double Polygon::area()
+double Polygon::area() const
 {
 	double sum = 0;
 	for(int i = 0; i < numberOfVertices-1; i++)
