@@ -22,7 +22,7 @@ class Polygon
 		Polygon& operator=(const Polygon &p);
 		Polygon(const Polygon &p);
 		bool operator>(const Polygon &s);
-		std::ostream& operator<<(std::ostream &output);
+		friend std::ostream& operator<<(std::ostream &output, Polygon &poly);
 		void add(Vertex ver);
 		double area() const;
 		int minx();

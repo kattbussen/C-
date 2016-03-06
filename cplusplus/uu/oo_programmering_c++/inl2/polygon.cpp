@@ -67,9 +67,15 @@ bool Polygon::operator>(const Polygon &s)
 	return this->area() > s.area();
 }
 
-std::ostream& Polygon::operator<<(std::ostream &output)
+std::ostream& operator<<(std::ostream &output, Polygon &poly)
 {
-	return output << "hej" << std::endl;
+	output << "{";
+	for(int i = 0; i < poly.numberOfVertices; i++)
+	{
+		output << "(" << poly.vertArray[i].getXpos() << "," << poly.vertArray[i].getYpos() << ") ";
+	}
+	output << "}";
+	return output; 
 }
 
 void Polygon::compareMinMax(Vertex ver)
