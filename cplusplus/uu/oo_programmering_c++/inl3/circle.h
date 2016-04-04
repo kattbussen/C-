@@ -8,24 +8,9 @@
 class Circle : public Shape
 {
 	public:
-		Circle(double x, double y, double radius)
-		{
-			vert = Vertex(x,y);
-			radius = radius;
-		}
-
-		double area()
-		{
-			return M_PI*radius*radius;
-		}
-
-		void print()
-		{
-			std::cout << "type: Circle" << std::endl;
-			std::cout << "x: " << getX() << std::endl;
-			std::cout << "y: " << getY() << std::endl;
-			std::cout << "size: " << area() << std::endl;
-		}
+		Circle(double x, double y, double radius);
+		double area();
+		void print();
 		
 	private:
 		double radius;

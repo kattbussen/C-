@@ -15,7 +15,7 @@ class Shape
 
 		double getY()
 		{
-			return vert.getXpos();
+			return vert.getYpos();
 		}
 
 	private:

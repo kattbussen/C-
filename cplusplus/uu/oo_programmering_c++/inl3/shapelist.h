@@ -3,61 +3,36 @@
 #include "shape.h"
 #endif
 
+#ifndef POINT_H
+#define POINT_H
 #include "point.h"
+#endif
+
+#ifndef CIRCLE_H
+#define CIRCLE_H
 #include "circle.h"
+#endif
+
+#ifndef RECTANGLE_H
+#define RECTANGLE_H
 #include "rectangle.h"
+#endif
+
+#ifndef POLYGON_H
+#define POLYGON_H
 #include "polygon.h"
+#endif
 
 class ShapeList : public Shape
 {
 	public:
-		ShapeList()
-		{
-			noOfElements = 0;
-		}
-		
-		ShapeList(const ShapeList &shapes)
-		{
-		}
-		
-		~ShapeList()
-		{
-			delete[] list;
-		}
-
-		void add(const Shape& s)
-		{
-			if(noOfElements == 0)
-			{
-				//Node tmp = new Node(s);
-				delete[] list;
-				list = new Node[1];
-				list[0] = new Node();
-			}
-			else
-			{
-
-			}
-			noOfElements++;
-		}
-
-		void remove(const Vertex &v)
-		{
-		}
-		
-		double area()
-		{
-			double ar = 0;
-			for(int i = 0; i < noOfElements; i++)
-			{
-				ar += list[i].shape->area();
-			}
-			return ar;
-		}
-	
-		void print()
-		{
-		}
+		ShapeList();
+		ShapeList(const ShapeList &shapes);
+		~ShapeList();
+		void add(const Shape& s);
+		void remove(const Vertex &v);
+		double area();
+		void print();
 
 	private:
 		class Node
