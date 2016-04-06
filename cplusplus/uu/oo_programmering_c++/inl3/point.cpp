@@ -22,7 +22,13 @@ void Point::print()
 	std::cout << "size: " << area() << std::endl;
 }
 
-/*int main()
+/*Point copyP(Point p)
+{
+	Point p2 = p;
+	return p2;
+}
+
+int main()
 {
 	double x = 3;
 	double y = 5;
@@ -30,11 +36,11 @@ void Point::print()
 	Point p = Point(x, y, 1);
 	p.print();
 	
-	Point p2 = p;
+	Point p2 = copyP(p);
 	p2.print();
 
-	Point p3 = p2;
-	p3.print();
+	//Point p3 = p2;
+	//p3.print();
 
 	return 0;
 }*/
