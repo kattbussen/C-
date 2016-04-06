@@ -16,10 +16,13 @@ double Circle::area()
 
 void Circle::print()
 {
-	std::cout << "type: Circle" << std::endl;
-	std::cout << "x: " << getX() << std::endl;
-	std::cout << "y: " << getY() << std::endl;
-	std::cout << "size: " << area() << std::endl;
+	std::cout << "CIRCLE: (" << vert.getXpos() << "," << vert.getYpos() << ") " << radius << std::endl;
+}
+
+Circle* Circle::clone() const
+{
+	Circle* circ = new Circle(*this);
+	return circ;
 }
 
 /*int main()

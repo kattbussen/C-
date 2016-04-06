@@ -9,6 +9,7 @@ class Point : public Shape
 	public:
 		Point(double x, double y, double size);
 		double area();
+		Point* clone() const;
 		void print();
 		
 	private:

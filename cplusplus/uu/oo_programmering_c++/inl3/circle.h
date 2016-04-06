@@ -11,6 +11,7 @@ class Circle : public Shape
 		Circle(double x, double y, double radius);
 		double area();
 		void print();
+		Circle* clone() const;
 		
 	private:
 		double radius;

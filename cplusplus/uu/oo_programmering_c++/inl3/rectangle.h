@@ -10,6 +10,7 @@ class Rectangle : public Shape
 		Rectangle(double x, double y, double width, double height);
 		double area();
 		void print();
+		Rectangle* clone() const;
 		
 	private:
 		double width;

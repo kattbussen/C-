@@ -13,6 +13,7 @@ class Polygon : public Shape
 		Polygon(const Polygon &p);
 		double area();
 		void print();
+		Polygon* clone() const;
 
 	private:
 		int numberOfVertices;

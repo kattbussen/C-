@@ -17,12 +17,12 @@ class Vertex
 		{
 		}
 
-		double getXpos()
+		double getXpos() const
 		{
 			return xPos;
 		}
 
-		double getYpos()
+		double getYpos() const
 		{
 			return yPos;
 		}

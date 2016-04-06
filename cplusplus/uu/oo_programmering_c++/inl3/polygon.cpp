@@ -51,10 +51,13 @@ double Polygon::area()
 
 void Polygon::print()
 {
-	std::cout << "type: Polygon" << std::endl;
-	std::cout << "x: " << getX() << std::endl;
-	std::cout << "y: " << getY() << std::endl;
-	std::cout << "size: " << area() << std::endl;
+	std::cout << "i polygon" << std::endl;
+}	
+
+Polygon* Polygon::clone() const
+{
+	Polygon* poly = new Polygon(*this);
+	return poly;
 }
 
 /*int main()

@@ -29,7 +29,6 @@ class ShapeList : public Shape
 		ShapeList();
 		ShapeList(const ShapeList &shapes);
 		~ShapeList();
-		//ShapeList& operator=(const ShapeList &slist);
 		void add(const Shape& s);
 		void remove(const Vertex &v);
 		double area();
@@ -39,10 +38,9 @@ class ShapeList : public Shape
 		class Node
 		{
 			public:
-				Node(Shape sh)
+				Node(const Shape &sh)
 				{
-					shape = &sh;
-					//shape->print();
+					shape = sh.clone();
 					next = 0;
 				}
 

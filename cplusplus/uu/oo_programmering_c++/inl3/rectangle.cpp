@@ -17,10 +17,13 @@ double Rectangle::area()
 
 void Rectangle::print()
 {
-	std::cout << "type: Rectangle" << std::endl;
-	std::cout << "x: " << getX() << std::endl;
-	std::cout << "y: " << getY() << std::endl;
-	std::cout << "size: " << area() << std::endl;
+	std::cout << "RECTANGLE: (" << vert.getXpos() << "," << vert.getYpos() << ") (" << width << "," << height << ")" << std::endl;
+}
+
+Rectangle* Rectangle::clone() const
+{
+	Rectangle* rect = new Rectangle(*this);
+	return rect;
 }
 
 /*int main()

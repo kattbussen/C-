@@ -46,19 +46,17 @@ void ShapeList::add(const Shape& s)
 	if(noOfElements == 0)
 	{
 		Node *tmp = new Node(s);
-		tmp->shape->print();
 		list = tmp;
 	}
 	else
 	{
-		//Node tmp = list[noOfElements-1];
-		/*for(int i = 0; i < noOfElements; i++)
+		Node* tmp = list;
+		for(int i = 0; i < noOfElements-1; i++)
 		{
-			tmp++;	
-		}*/
+			tmp = tmp->next;	
+		}
 		Node *newNode = new Node(s);
-		list[noOfElements-1].next = newNode;
-		//tmp->next = newNode;
+		tmp->next = newNode;
 	}
 	noOfElements++;
 }
@@ -70,22 +68,22 @@ void ShapeList::remove(const Vertex &v)
 double ShapeList::area()
 {
 	double ar = 0;
-	for(int i = 0; i < noOfElements; i++)
+	Node* tmp = list;
+	for(int i = 0; i < noOfElements-1; i++)
 	{
-		ar += list[i].shape->area();
+		ar += tmp->shape->area();
+		tmp = tmp->next;
 	}
+	ar += tmp->shape->area();
 	return ar;
 }
 
 void ShapeList::print()
 {
-	std::cout << noOfElements << std::endl;
-	Node tmp = *list;
-	if(tmp.shape != NULL)
-		std::cout << "inte null" << std::endl;
-
+	Node* tmp = list;
 	for(int i = 0; i < noOfElements; i++)
 	{
-		list[i].shape->print();
+		tmp->shape->print();
+		tmp = tmp->next;
 	}
 }
