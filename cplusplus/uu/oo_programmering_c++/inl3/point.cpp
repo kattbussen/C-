@@ -24,31 +24,3 @@ void Point::print()
 {
 	std::cout << "POINT: (" << vert.getXpos() << "," << vert.getYpos() << ") " << area() << std::endl;
 }
-
-/*class Node
-{   
-	public:
-		Node(const Shape &sh)
-		{	   
-			shape = sh.clone();
-			shape->print();
-		}   
-
-		Shape* shape;
-};*/  
-
-/*void add(const Shape &s)
-{
-	Node *tmp = new Node(s);
-	tmp->shape->print();
-}
-
-int main()
-{
-	double x = 3;
-	double y = 5;
-
-	add(Point(6,7,1));	
-
-	return 0;
-}*/

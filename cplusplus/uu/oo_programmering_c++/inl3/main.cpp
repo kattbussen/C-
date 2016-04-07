@@ -15,7 +15,7 @@ int main()
   list.print();
   cout << " Totalyta: " << list.area() << endl;
 
-  /*ShapeList list2(list);
+  ShapeList list2(list);
   list2.print();
   cout << " Totalyta: " << list2.area() << endl;
   list.remove( Vertex(5,5) );
@@ -23,10 +23,7 @@ int main()
   cout << " Totalyta: " << list.area() << endl;
   list2.print();
   cout << " Totalyta: " << list2.area() << endl;
-  */
-	//list.print();
-  //double area = list.area();
-	//cout << area << endl;
+  
 	return 0;
 }
 

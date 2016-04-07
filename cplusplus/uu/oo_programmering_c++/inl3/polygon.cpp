@@ -51,7 +51,12 @@ double Polygon::area()
 
 void Polygon::print()
 {
-	std::cout << "i polygon" << std::endl;
+	std::cout << "POLYGON: (" << vert.getXpos() << "," << vert.getYpos() << ") { ";
+	for(int i = 0; i < numberOfVertices; i++)
+	{
+		std::cout << "(" << vertArray[i].getXpos() << "," << vertArray[i].getYpos() << ") ";	
+	}
+	std::cout << "}" << std::endl; 
 }	
 
 Polygon* Polygon::clone() const
@@ -59,26 +64,3 @@ Polygon* Polygon::clone() const
 	Polygon* poly = new Polygon(*this);
 	return poly;
 }
-
-/*int main()
-{
-	double x = 3;
-	double y = 5;
-
-	Vertex varr[4];
-  varr[0] = Vertex(0,0); 
-  varr[1] = Vertex(10,0);
-  varr[2] = Vertex(5,2);
-  varr[3] = Vertex(5,5);
-
-	Polygon p = Polygon(x, y, varr, 4);
-	p.print();
-	
-	Polygon p2 = p;
-	p2.print();
-
-	Polygon p3 = p2;
-	p3.print();
-
-	return 0;
-}*/

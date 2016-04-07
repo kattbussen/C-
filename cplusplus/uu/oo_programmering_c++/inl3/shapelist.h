@@ -29,6 +29,7 @@ class ShapeList : public Shape
 		ShapeList();
 		ShapeList(const ShapeList &shapes);
 		~ShapeList();
+		ShapeList& operator=(const ShapeList &slist);
 		void add(const Shape& s);
 		void remove(const Vertex &v);
 		double area();

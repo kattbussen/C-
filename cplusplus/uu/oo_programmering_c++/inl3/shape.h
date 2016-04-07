@@ -1,6 +1,7 @@
 #include "vertex.h"
 #include <string>
 #include <iostream>
+#include <cmath>
 
 class Shape
 {
@@ -23,6 +24,17 @@ class Shape
 		virtual Shape* clone() const
 		{
 			return NULL;
+		}
+	
+		bool isClose(const Vertex ver)
+		{
+			double xdiff = std::abs(ver.getXpos() - getX());
+			double ydiff = std::abs(ver.getYpos() - getY());
+		
+			if(xdiff < 1 && ydiff < 1)
+				return true;
+			else
+				return false;
 		}
 	
 		double getX()
