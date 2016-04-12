@@ -88,36 +88,44 @@ void ShapeList::add(const Shape& s)
 
 void ShapeList::remove(const Vertex &v)
 {
-	Node* oldList = list;
-	Node* newList;
-	int newElementCount = 0;
-	
-	for(int i = 0; i < noOfElements; i++)
+	Node* currNode = list;
+	Node* prevNode = NULL;	
+	int newNoOfElements = 0;
+
+	for(int i = 0; i < noOfElements-1; i++)
 	{
-		if(!oldList->shape->isClose(v))
+		if(!currNode->shape->isClose(v))
 		{
-			std::cout << "inte nära!" << std::endl;
-			if(newElementCount == 0)
-			{
-				newList = new Node(*(oldList->shape->clone()));
-				oldList = oldList->next;
-				list = newList;
-			}
-			else
-			{
-				newList->next = new Node(*(oldList->shape->clone()));
-				newList = newList->next;
-				oldList = oldList->next;
-			}
-			newElementCount++;
+			prevNode = currNode;
+			currNode = currNode->next;
+			newNoOfElements++;
 		}
 		else
 		{
-			std::cout << "nära!" << std::endl;	
-			oldList = oldList->next;
+			if(prevNode != NULL)
+			{
+				prevNode->next = currNode->next;
+				delete currNode;
+				currNode = prevNode->next;
+			}
+			else
+			{
+				Node* tmp = currNode->next;
+				delete currNode;
+				currNode = tmp;
+			}
 		}
 	}
-	noOfElements = newElementCount;
+
+	if(!currNode->shape->isClose(v))
+		newNoOfElements++;
+	else
+	{
+		prevNode->next = NULL;
+		delete currNode;
+	}
+
+	noOfElements = newNoOfElements;
 }
 
 double ShapeList::area()
