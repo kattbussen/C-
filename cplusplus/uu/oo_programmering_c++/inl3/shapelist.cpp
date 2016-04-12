@@ -1,7 +1,4 @@
-#ifndef SHAPELIST_H
-#define SHAPELIST_H
 #include "shapelist.h"
-#endif
 
 ShapeList::ShapeList()
 {
@@ -29,7 +26,20 @@ ShapeList::ShapeList(const ShapeList &shapes)
 
 ShapeList::~ShapeList()
 {
-	delete[] list;
+	if(noOfElements < 2)
+		delete list;
+	else
+	{
+		Node* delNode = list;
+		Node* nextNode = delNode->next;
+		for(int i = 0; i < noOfElements-1; i++)
+		{
+			delete delNode;
+			delNode = nextNode;
+			nextNode = delNode->next;
+		}
+		delete delNode;
+	}
 }
 
 ShapeList& ShapeList::operator=(const ShapeList &slist)

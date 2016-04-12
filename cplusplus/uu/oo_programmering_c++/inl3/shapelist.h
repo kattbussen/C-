@@ -4,6 +4,8 @@
 #include "rectangle.h"
 #include "polygon.h"
 
+#ifndef SHAPELIST_H
+#define SHAPELIST_H
 class ShapeList : public Shape
 {
 	public:
@@ -26,6 +28,11 @@ class ShapeList : public Shape
 					next = 0;
 				}
 
+				~Node()
+				{
+					delete shape;
+				}				
+
 				void setNext(Node *nextNode)
 				{
 					next = nextNode;
@@ -37,3 +44,4 @@ class ShapeList : public Shape
 		int noOfElements;
 		Node *list;
 };
+#endif
