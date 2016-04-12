@@ -1,3 +1,5 @@
+#ifndef VERTEX_H
+#define VERTEX_H
 class Vertex
 {
 	public:
@@ -31,3 +33,4 @@ class Vertex
 		double xPos;
 		double yPos;
 };
+#endif

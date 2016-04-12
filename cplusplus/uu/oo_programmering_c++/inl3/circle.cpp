@@ -1,7 +1,4 @@
-#ifndef CIRCLE_H
-#define CIRCLE_H
 #include "circle.h"
-#endif
 
 Circle::Circle(double x, double y, double radius)
 {

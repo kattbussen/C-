@@ -1,9 +1,8 @@
-#ifndef SHAPE_H
-#define SHAPE_H
 #include "shape.h"
-#endif
 #include <iostream>
 
+#ifndef RECTANGLE_H
+#define RECTANGLE_H
 class Rectangle : public Shape
 {
 	public:
@@ -16,3 +15,4 @@ class Rectangle : public Shape
 		double width;
 		double height;
 };
+#endif

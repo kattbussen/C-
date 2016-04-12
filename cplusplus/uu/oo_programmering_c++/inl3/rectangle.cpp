@@ -1,7 +1,4 @@
-#ifndef RECTANGLE_H
-#define RECTANGLE_H
 #include "rectangle.h"
-#endif
 
 Rectangle::Rectangle(double x, double y, double width, double height)
 {

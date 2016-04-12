@@ -1,7 +1,4 @@
-#ifndef POINT_H
-#define POINT_H
 #include "point.h"
-#endif
 
 Point::Point(double x, double y, double size)
 {

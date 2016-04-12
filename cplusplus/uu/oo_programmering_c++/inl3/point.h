@@ -1,9 +1,8 @@
-#ifndef SHAPE_H
-#define SHAPE_H
 #include "shape.h"
-#endif
 #include <iostream>
 
+#ifndef POINT_H
+#define POINT_H
 class Point : public Shape
 {
 	public:
@@ -15,3 +14,4 @@ class Point : public Shape
 	private:
 		double size;
 };
+#endif

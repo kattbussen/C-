@@ -1,10 +1,9 @@
-#ifndef SHAPE_H
-#define SHAPE_H
 #include "shape.h"
-#endif
 #include <iostream>
 #include <cmath>
 
+#ifndef CIRCLE_H
+#define CIRCLE_H
 class Circle : public Shape
 {
 	public:
@@ -16,3 +15,4 @@ class Circle : public Shape
 	private:
 		double radius;
 };
+#endif

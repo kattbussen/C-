@@ -1,10 +1,9 @@
-#ifndef SHAPE_H
-#define SHAPE_H
 #include "shape.h"
-#endif
 #include <iostream>
 #include <cmath>
 
+#ifndef POLYGON_H
+#define POLYGON_H
 class Polygon : public Shape
 {
 	public:
@@ -19,3 +18,4 @@ class Polygon : public Shape
 		int numberOfVertices;
 		Vertex* vertArray;
 };
+#endif

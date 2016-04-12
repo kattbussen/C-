@@ -1,7 +1,4 @@
-#ifndef POLYGON_H
-#define POLYGON_H
 #include "polygon.h"
-#endif
 
 Polygon::Polygon(double x, double y, Vertex *vertArr, int noVertices)
 {
