@@ -11,7 +11,6 @@ class FictionBook : public Book {
 		void printInfo();
 
 	private:
-		std::string type;
 };	
 
 #endif
