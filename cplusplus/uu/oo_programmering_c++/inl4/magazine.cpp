@@ -1,31 +1,25 @@
-#include "cd.h"
+#include "magazine.h"
 
-Cd::Cd(std::string inArtist, std::string inTitle, double inPlaytime, int itemIdNumber) : Item(itemIdNumber){
-	artist = inArtist;
-	title = inTitle;
-	playtime = inPlaytime;
+Magazine::Magazine(int itemIdNumber, std::string inTitle, int inIssue, int inYear) : Item(itemIdNumber, inTitle){
+	issue = inIssue;
+	year = inYear;
 }
 		
-Cd::~Cd(){
+Magazine::~Magazine(){
 
 }
 
-std::string Cd::getArtist(){
-	return artist;
+int Magazine::getIssue(){
+	return issue;
 }
 
-std::string Cd::getTitle(){
-	return title;
+int Magazine::getYear(){
+	return year;
 }
 
-double Cd::getPlaytime(){
-	return playtime;
-}
-
-void Cd::printInfo(){
-	std::cout << "Artist:   " << artist << std::endl;
-	std::cout << "Title:    " << title << std::endl;
-	std::cout << "Length:   " << playtime << " min." << std::endl;
-	std::cout << "id:       " << getIdNumber() << std::endl;
-	std::cout << "borr. by: " << borrowedBy << std::endl;
+void Magazine::printInfo(){
+	std::cout << "Title:      " << getTitle() << std::endl;
+	std::cout << "Issue/year: " << issue << "/" << year << std::endl;
+	std::cout << "id:         " << getIdNumber() << std::endl;
+	std::cout << "borr. by:   " << borrowedBy << std::endl;
 }

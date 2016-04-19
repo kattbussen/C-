@@ -7,10 +7,10 @@
 class Magazine : public Item {
 
 	public:
-		Magazine(std::string inTitle, int inIssue, int inYear, int itemIdNumber);
+		Magazine(int itemIdNumber, std::string inTitle, int inIssue, int inYear);
 		~Magazine();
-		std::string getTitle();
-		double getPlaytime();
+		int getIssue();
+		int getYear();
 		void printInfo();
 
 	private:
