@@ -1,6 +1,6 @@
 #include "cd.h"
 
-Cd::Cd(int itemIdNumber, std::string inTitle, std::string inArtist, double inPlaytime) : Item(itemIdNumber, inTitle){
+Cd::Cd(std::string inTitle, std::string inArtist, double inPlaytime) : Item(inTitle){
 	artist = inArtist;
 	playtime = inPlaytime;
 }
@@ -24,3 +24,8 @@ void Cd::printInfo(){
 	std::cout << "id:         " << getIdNumber() << std::endl;
 	std::cout << "borr. by:   " << borrowedBy << std::endl;
 }
+
+/*int main()
+{
+	return 0;
+}*/

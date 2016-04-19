@@ -1,6 +1,6 @@
 #include "magazine.h"
 
-Magazine::Magazine(int itemIdNumber, std::string inTitle, int inIssue, int inYear) : Item(itemIdNumber, inTitle){
+Magazine::Magazine(std::string inTitle, int inIssue, int inYear) : Item(inTitle){
 	issue = inIssue;
 	year = inYear;
 }

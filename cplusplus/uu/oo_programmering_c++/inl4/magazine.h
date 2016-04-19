@@ -7,7 +7,7 @@
 class Magazine : public Item {
 
 	public:
-		Magazine(int itemIdNumber, std::string inTitle, int inIssue, int inYear);
+		Magazine(std::string inTitle, int inIssue, int inYear);
 		~Magazine();
 		int getIssue();
 		int getYear();

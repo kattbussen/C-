@@ -8,8 +8,10 @@ class Item {
 	public:
 		int borrowedBy;
 
-		Item(int itemIdNumber, std::string inTitle) {
-			idNumber = itemIdNumber;
+		Item(std::string inTitle) {
+			static int globalIdNumber = 0;
+			globalIdNumber++;
+			idNumber = globalIdNumber;
 			title = inTitle;
 			borrowedBy = 0;
 		}	
@@ -27,8 +29,8 @@ class Item {
 		}
 
 	private:
+		static int globalIdNumber;
 		int idNumber;
 		std::string title;
-
 };
 #endif

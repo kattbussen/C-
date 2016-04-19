@@ -1,6 +1,6 @@
 #include "nonFictionBook.h"
 
-NonFictionBook::NonFictionBook(int itemIdNumber, std::string inTitle, std::string inAuthor) : Book(itemIdNumber, inTitle, inAuthor, "NonFiction") {
+NonFictionBook::NonFictionBook(std::string inTitle, std::string inAuthor) : Book(inTitle, inAuthor, "NonFiction") {
 }
 
 NonFictionBook::~NonFictionBook() {

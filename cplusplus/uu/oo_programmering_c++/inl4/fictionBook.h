@@ -6,7 +6,7 @@
 class FictionBook : public Book {
 	
 	public:
-		FictionBook(int itemIdNumber, std::string inTitle, std::string inAuthor);
+		FictionBook(std::string inTitle, std::string inAuthor);
 		~FictionBook();
 		void printInfo();
 

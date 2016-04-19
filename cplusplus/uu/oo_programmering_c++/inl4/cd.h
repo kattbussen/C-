@@ -7,7 +7,7 @@
 class Cd : public Item {
 
 	public:
-		Cd(int itemIdNumber, std::string inTitle, std::string inArtist, double inPlaytime);
+		Cd(std::string inTitle, std::string inArtist, double inPlaytime);
 		~Cd();
 		std::string getArtist();
 		double getPlaytime();
