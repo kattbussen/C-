@@ -13,12 +13,12 @@ ShapeList::ShapeList(const ShapeList &shapes)
 	if(noOfElements != 0)
 	{
 		Node* oldList = shapes.list;
-		Node* newList = newList = new Node(*(shapes.list->shape->clone()));
+		Node* newList = new Node(*(shapes.list->shape));
 		list = newList;
 		for(int i = 0; i < noOfElements-1; i++)
 		{
 			oldList = oldList->next;
-			newList->next = new Node(*(oldList->shape->clone()));
+			newList->next = new Node(*(oldList->shape));
 			newList = newList->next;
 		}
 	}
@@ -52,13 +52,13 @@ ShapeList& ShapeList::operator=(const ShapeList &slist)
 		{
 			delete[] list;
 			Node* oldList = slist.list;
-			Node* newList = new Node(*(slist.list->shape->clone()));
+			Node* newList = new Node(*(slist.list->shape));
 			list = newList;
 
 			for(int i = 0; i < noOfElements-1; i++)
 			{
 				oldList = oldList->next;
-				newList->next = new Node(*(oldList->shape->clone()));
+				newList->next = new Node(*(oldList->shape)); 
 				newList = newList->next;
 			}
 		}
