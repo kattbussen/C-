@@ -6,7 +6,7 @@
 class NonFictionBook : public Book {
 	
 	public:
-		NonFictionBook(std::string inTitle, std::string inAuthor);
+		NonFictionBook(std::string inTitle, int itemNumber, std::string inAuthor);
 		~NonFictionBook();
 		void printInfo();
 

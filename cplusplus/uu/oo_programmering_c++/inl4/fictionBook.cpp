@@ -1,6 +1,6 @@
 #include "fictionBook.h"
 
-FictionBook::FictionBook(std::string inTitle, std::string inAuthor) : Book(inTitle, inAuthor, "Fiction") {
+FictionBook::FictionBook(std::string inTitle, int itemNumber, std::string inAuthor) : Book(inTitle, itemNumber, inAuthor, "Fiction") {
 }
 
 FictionBook::~FictionBook() {

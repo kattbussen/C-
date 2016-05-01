@@ -6,7 +6,7 @@
 class Book : public Item {
 
 	public:
-		Book(std::string inTitle, std::string inAuthor, std::string inType) : Item(inTitle){
+		Book(std::string inTitle, int itemNumber, std::string inAuthor, std::string inType) : Item(inTitle, itemNumber){
 			author = inAuthor;
 			type = inType;
 		}

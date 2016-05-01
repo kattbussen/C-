@@ -8,9 +8,11 @@ class Item {
 	public:
 		int borrowedBy;
 
-		Item(std::string inTitle) {
+		Item(std::string inTitle, int itemNumber) {
 			static int globalIdNumber = 0;
-			globalIdNumber++;
+			if (itemNumber > globalIdNumber)
+				globalIdNumber = itemNumber;
+
 			idNumber = globalIdNumber;
 			title = inTitle;
 			borrowedBy = 0;
@@ -26,6 +28,13 @@ class Item {
 	
 		std::string getTitle(){
 			return title;
+		}
+
+	  int getGlobalIdNumber(){
+	  //void getGlobalIdNumber(){
+			return globalIdNumber;
+			//std::cout << globalIdNumber << std::endl;
+			//std::cout << "hej" << std::endl;
 		}
 
 	private:
