@@ -8,14 +8,13 @@ class Item {
 	public:
 		int borrowedBy;
 
-		Item(std::string inTitle, int itemNumber) {
-			static int globalIdNumber = 0;
+		Item(std::string inTitle, int itemNumber, int borrowedNumber) {
 			if (itemNumber > globalIdNumber)
 				globalIdNumber = itemNumber;
 
 			idNumber = globalIdNumber;
 			title = inTitle;
-			borrowedBy = 0;
+			borrowedBy = borrowedNumber;
 		}	
 
 		virtual void printInfo(){
@@ -31,10 +30,15 @@ class Item {
 		}
 
 	  int getGlobalIdNumber(){
-	  //void getGlobalIdNumber(){
 			return globalIdNumber;
-			//std::cout << globalIdNumber << std::endl;
-			//std::cout << "hej" << std::endl;
+		}
+
+		bool checkout(int number){
+			if (borrowedBy != 0){
+				borrowedBy = number;
+				return true;
+			}
+			return false;
 		}
 
 	private:

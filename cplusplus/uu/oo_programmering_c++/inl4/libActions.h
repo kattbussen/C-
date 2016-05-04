@@ -18,10 +18,12 @@ class LibActions{
 		//bool search(std::string searchString);
 		//void addItem(Item it);
 		//void removeItem(Item it);
+		void printItems();
+
 
 	private:
 		bool registerChanged;
-		std::vector<Item> vec;
+		std::vector<Item*> vec;
 		void readFile(std::string file);
 };
 

@@ -1,6 +1,6 @@
 #include "cd.h"
 
-Cd::Cd(std::string inTitle, int itemNumber, std::string inArtist, double inPlaytime) : Item(inTitle, itemNumber){
+Cd::Cd(std::string inTitle, int itemNumber, int borrowedNumber, std::string inArtist, std::string inPlaytime) : Item(inTitle, itemNumber, borrowedNumber){
 	artist = inArtist;
 	playtime = inPlaytime;
 }
@@ -13,7 +13,7 @@ std::string Cd::getArtist(){
 	return artist;
 }
 
-double Cd::getPlaytime(){
+std::string Cd::getPlaytime(){
 	return playtime;
 }
 
@@ -25,15 +25,9 @@ void Cd::printInfo(){
 	std::cout << "borr. by:   " << borrowedBy << std::endl;
 }
 
-void Cd::printBla(){
-	//std::cout << globalIdNumber << std::endl;
-	//Cd::getGlobalIdNumber();
-	std::cout << Cd::getGlobalIdNumber() << std::endl;
-}
-
-int main()
+/*int main()
 {
 	Cd cd = Cd("Faith", 1, "The Cure", 43.13);
 	cd.printBla();
 	return 0;
-}
+}*/
