@@ -17,24 +17,30 @@ class Item {
 			borrowedBy = borrowedNumber;
 		}	
 
-		virtual void printInfo(){
+		virtual void printInfo() {
 			std::cout << "This item has idNumber " << idNumber << " and is borrowed by " << borrowedBy << std::endl;
 		}
+	
+		virtual std::string extractInfo() {
+			std::string id = std::to_string(idNumber);
+			std::string borrowed = std::to_string(borrowedBy);
+			return id+"\n"+borrowed;
+		}
 
-		int getIdNumber(){
+		int getIdNumber() {
 			return idNumber;
 		}
 	
-		std::string getTitle(){
+		std::string getTitle() {
 			return title;
 		}
 
-	  int getGlobalIdNumber(){
+	  int getGlobalIdNumber() {
 			return globalIdNumber;
 		}
 
-		bool checkout(int number){
-			if (borrowedBy == 0){
+		bool checkout(int number) {
+			if (borrowedBy == 0) {
 				borrowedBy = number;
 				return true;
 			}

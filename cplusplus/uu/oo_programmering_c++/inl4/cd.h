@@ -12,6 +12,7 @@ class Cd : public Item {
 		std::string getArtist();
 		std::string getPlaytime();
 		void printInfo();
+		std::string extractInfo();
 
 	private:
 		std::string artist;

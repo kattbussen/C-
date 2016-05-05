@@ -1,4 +1,4 @@
-#include "lib.h"
+#include "libActions.h"
 
 int Item::globalIdNumber = 0;
 LibActions lib = LibActions("lib.txt");
@@ -95,6 +95,7 @@ void addJournal() {
 }
 
 void exitLib() {
+	lib.updateLib("saved_lib.txt");
 	std::cout << "Exiting." << std::endl;
 }
 

@@ -12,6 +12,7 @@ class Journal : public Item {
 		int getIssue();
 		int getYear();
 		void printInfo();
+		std::string extractInfo();
 
 	private:
 		std::string title;

@@ -9,6 +9,7 @@ class NonFictionBook : public Book {
 		NonFictionBook(std::string inTitle, int itemNumber, int borrowedNumber, std::string inAuthor);
 		~NonFictionBook();
 		void printInfo();
+		std::string extractInfo();
 
 	private:
 };	

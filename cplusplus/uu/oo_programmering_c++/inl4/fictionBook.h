@@ -9,7 +9,8 @@ class FictionBook : public Book {
 		FictionBook(std::string inTitle, int itemNumber, int borrowedNumber, std::string inAuthor);
 		~FictionBook();
 		void printInfo();
-
+		std::string extractInfo();
+	
 	private:
 };	
 

@@ -6,6 +6,14 @@ FictionBook::FictionBook(std::string inTitle, int itemNumber, int borrowedNumber
 FictionBook::~FictionBook() {
 }
 
+std::string FictionBook::extractInfo() {
+	std::string type = "Fiction";
+	std::string id = std::to_string(getIdNumber());
+	std::string borrowed = std::to_string(borrowedBy);
+
+	return type+"\n"+getAuthor()+"\n"+getTitle()+"\n"+id+"\n"+borrowed;
+}
+
 void FictionBook::printInfo() {
 	std::cout << "Type:       " << getType() << std::endl;
 	std::cout << "Author:     " << getAuthor() << std::endl;

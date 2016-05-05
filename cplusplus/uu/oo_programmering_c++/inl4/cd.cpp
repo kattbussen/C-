@@ -16,6 +16,13 @@ std::string Cd::getPlaytime() {
 	return playtime;
 }
 
+std::string Cd::extractInfo() {
+	std::string type = "CD";
+	std::string idNumber = std::to_string(getIdNumber());
+	std::string borrowed = std::to_string(borrowedBy);
+	return type+"\n"+artist+"\n"+getTitle()+"\n"+playtime+"\n"+idNumber+"\n"+borrowed;
+}
+
 void Cd::printInfo() {
 	std::cout << "Artist:     " << artist << std::endl;
 	std::cout << "Title:      " << getTitle() << std::endl;

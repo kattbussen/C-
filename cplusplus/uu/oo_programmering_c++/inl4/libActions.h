@@ -20,7 +20,7 @@ class LibActions{
 		void addJournal(std::string title, int issue, int year);
 		void removeItem(int itemNumber);
 		void printItems();
-
+		void updateLib(std::string fileName);
 
 	private:
 		bool contentChanged;

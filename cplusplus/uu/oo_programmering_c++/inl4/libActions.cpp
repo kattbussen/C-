@@ -104,6 +104,7 @@ void LibActions::borrowItem(int itemNumber, int borrower) {
 		if((*it)->getIdNumber() == itemNumber){
 			bool success = (*it)->checkout(borrower);
 			if(success) {
+				contentChanged = true;
 				std::cout << "Item " << itemNumber << " borrowed by " << borrower << std::endl;
 			}
 			else {
@@ -120,6 +121,7 @@ void LibActions::returnItem(int itemNumber) {
 	for(it = vec.begin(); it != vec.end(); ++it) {
 		if( (*it)->getIdNumber() == itemNumber) {
 			(*it)->borrowedBy = 0;
+			contentChanged = true;
 			std::cout << "Returned item " << itemNumber << std::endl;
 			return;
 		}
@@ -131,6 +133,7 @@ void LibActions::addCd(std::string artist, std::string title, std::string playti
 	int idNumber = vec.front()->getGlobalIdNumber();
 	idNumber++;
 	vec.push_back(new Cd(title, idNumber, 0, artist, playtime));
+	contentChanged = true;
 	std::cout << "Added new CD" << std::endl;
 }
 
@@ -145,6 +148,22 @@ void LibActions::addJournal(std::string title, int issue, int year) {
 	int idNumber = vec.front()->getGlobalIdNumber();
 	idNumber++;
 	vec.push_back(new Journal(title, idNumber, 0, issue, year));
+	contentChanged = true;
 	std::cout << "Added new Journal" << std::endl;
+}
 
+void LibActions::updateLib(std::string fileName) {
+	if(contentChanged) {
+		std::ofstream file;
+		file.open(fileName);
+		
+		std::vector<Item*>::iterator it;
+		for(it = vec.begin(); it != vec.end(); ++it) {
+			file << (*it)->extractInfo() << std::endl;
+		}
+		std::cout << "Wrote to " << fileName << std::endl;
+	}
+	else {
+		std::cout << "No changes made." << std::endl;
+	}
 }
