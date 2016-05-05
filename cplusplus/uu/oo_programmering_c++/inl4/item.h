@@ -34,7 +34,7 @@ class Item {
 		}
 
 		bool checkout(int number){
-			if (borrowedBy != 0){
+			if (borrowedBy == 0){
 				borrowedBy = number;
 				return true;
 			}

@@ -1,23 +1,23 @@
-#include "magazine.h"
+#include "journal.h"
 
-Magazine::Magazine(std::string inTitle, int itemNumber, int borrowedNumber, int inIssue, int inYear) : Item(inTitle, itemNumber, borrowedNumber){
+Journal::Journal(std::string inTitle, int itemNumber, int borrowedNumber, int inIssue, int inYear) : Item(inTitle, itemNumber, borrowedNumber){
 	issue = inIssue;
 	year = inYear;
 }
 		
-Magazine::~Magazine(){
+Journal::~Journal(){
 
 }
 
-int Magazine::getIssue(){
+int Journal::getIssue(){
 	return issue;
 }
 
-int Magazine::getYear(){
+int Journal::getYear(){
 	return year;
 }
 
-void Magazine::printInfo(){
+void Journal::printInfo(){
 	std::cout << "Title:      " << getTitle() << std::endl;
 	std::cout << "Issue/year: " << issue << "/" << year << std::endl;
 	std::cout << "id:         " << getIdNumber() << std::endl;

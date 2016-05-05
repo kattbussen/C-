@@ -1,5 +1,5 @@
 #include "cd.h"
-#include "magazine.h"
+#include "journal.h"
 #include "fictionBook.h"
 #include "nonfictionBook.h"
 #include "libActions.h"

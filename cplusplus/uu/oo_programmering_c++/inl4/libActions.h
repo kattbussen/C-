@@ -13,16 +13,17 @@ class LibActions{
 		~LibActions();
 
 
-		//bool borrowItem(int itemIdNum);
-		//bool returnItem(int itemIdNum);
+		void borrowItem(int itemNumber, int borrower);
+		void returnItem(int itemNumber);
 		//bool search(std::string searchString);
-		//void addItem(Item it);
-		//void removeItem(Item it);
+		void addCd(std::string artist, std::string title, std::string playtime);
+		void addJournal(std::string title, int issue, int year);
+		void removeItem(int itemNumber);
 		void printItems();
 
 
 	private:
-		bool registerChanged;
+		bool contentChanged;
 		std::vector<Item*> vec;
 		void readFile(std::string file);
 };
