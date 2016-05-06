@@ -1,9 +1,5 @@
 #include "libActions.h"
-#include "cd.h"
-#include "journal.h"
-#include "fictionBook.h"
-#include "nonfictionBook.h"
-#include "libActions.h"
+
 
 LibActions::LibActions(std::string file) {
 	contentChanged = false;	
@@ -11,12 +7,14 @@ LibActions::LibActions(std::string file) {
 	readFile(file);
 }
 
+
 LibActions::~LibActions() {
 	std::vector<Item*>::iterator i;
 	for(i = vec.begin(); i != vec.end(); ++i) {
 		delete *i;
 	}
 }
+
 
 void LibActions::readFile(std::string file) {
 	std::ifstream ifs(file);	
@@ -85,6 +83,7 @@ void LibActions::readFile(std::string file) {
 	}	
 }
 
+
 void LibActions::removeItem(int itemNumber) {
 	std::vector<Item*>::iterator it;
 	for(it = vec.begin(); it != vec.end(); ++it) {
@@ -97,6 +96,7 @@ void LibActions::removeItem(int itemNumber) {
 	}
 	std::cout << "Unable to find element with number: " << itemNumber << std::endl;
 }
+
 
 void LibActions::borrowItem(int itemNumber, int borrower) {
 	std::vector<Item*>::iterator it;
@@ -116,6 +116,7 @@ void LibActions::borrowItem(int itemNumber, int borrower) {
 	std::cout << "Unable to find element with number: " << itemNumber << std::endl;
 } 
 
+
 void LibActions::returnItem(int itemNumber) {
 	std::vector<Item*>::iterator it;
 	for(it = vec.begin(); it != vec.end(); ++it) {
@@ -129,6 +130,7 @@ void LibActions::returnItem(int itemNumber) {
 	std::cout << "Unable to find element with number: " << itemNumber << std::endl;
 }
 
+
 void LibActions::addCd(std::string artist, std::string title, std::string playtime) {
 	int idNumber = vec.front()->getGlobalIdNumber();
 	idNumber++;
@@ -137,12 +139,14 @@ void LibActions::addCd(std::string artist, std::string title, std::string playti
 	std::cout << "Added new CD" << std::endl;
 }
 
+
 void LibActions::printItems() {
 	std::vector<Item*>::iterator i;
 	for(i = vec.begin(); i != vec.end(); ++i) {
 		(*i)->printInfo();
 	}
 }
+
 
 void LibActions::addJournal(std::string title, int issue, int year) {
 	int idNumber = vec.front()->getGlobalIdNumber();
@@ -151,6 +155,7 @@ void LibActions::addJournal(std::string title, int issue, int year) {
 	contentChanged = true;
 	std::cout << "Added new Journal" << std::endl;
 }
+
 
 void LibActions::updateLib(std::string fileName) {
 	if(contentChanged) {
@@ -165,5 +170,73 @@ void LibActions::updateLib(std::string fileName) {
 	}
 	else {
 		std::cout << "No changes made." << std::endl;
+	}
+}
+
+
+void LibActions::addNonFictionBook(std::string title, std::string author) {
+	int idNumber = vec.front()->getGlobalIdNumber();
+	idNumber++;
+	vec.push_back(new NonFictionBook(title, idNumber, 0, author));
+	contentChanged = true;
+	std::cout << "Added new NonFictionBook" << std::endl;
+}
+
+
+void LibActions::addFictionBook(std::string title, std::string author) {
+	int idNumber = vec.front()->getGlobalIdNumber();
+	idNumber++;
+	vec.push_back(new FictionBook(title, idNumber, 0, author));
+	contentChanged = true;
+	std::cout << "Added new FictionBook" << std::endl;
+}
+
+
+void LibActions::searchByTitle(std::string title) {
+	bool noMatch = true;	
+	
+	std::vector<Item*>::iterator it;
+	for(it = vec.begin(); it != vec.end(); ++it) {
+		std::string tmpTitle = (*it)->getTitle();
+		std::size_t pos = tmpTitle.find(title);
+		if(pos != std::string::npos) {
+			noMatch = false;
+			std::cout << "++++++++++++++++++++++++++" << std::endl;
+			std::cout << (*it)->extractInfo() << std::endl;
+			std::cout << "++++++++++++++++++++++++++" << std::endl;
+		}
+	}
+
+	if(noMatch) {
+		std::cout << "No items matched the search." << std::endl;
+	}
+}
+
+
+void LibActions::searchByArtistOrAuthor(std::string searchString) {
+	bool noMatch = true;
+
+	std::vector<Item*>::iterator it;
+	for(it = vec.begin(); it != vec.end(); ++it) {
+		std::string all = (*it)->extractInfo();
+		std::size_t pos = all.find("\n");
+		std::string type = all.substr(0,pos);
+	
+		if(type != "Journal") {
+			std::size_t pos2 = all.find("\n", pos+1);
+			std::string search = all.substr(pos+1,pos2);
+			std::size_t checkPos = search.find(searchString);
+			
+			if(checkPos != std::string::npos) {
+				noMatch = false;
+				std::cout << "++++++++++++++++++++++++++" << std::endl;
+				std::cout << all << std::endl;
+				std::cout << "++++++++++++++++++++++++++" << std::endl;
+			}
+		}		
+	}
+	
+	if(noMatch) {
+		std::cout << "No items matched the search." << std::endl;
 	}
 }

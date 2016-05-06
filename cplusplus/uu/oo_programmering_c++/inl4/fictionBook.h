@@ -1,7 +1,7 @@
-#include "book.h"
-
 #ifndef FICTIONBOOK_H
 #define FICTIONBOOK_H
+
+#include "book.h"
 
 class FictionBook : public Book {
 	

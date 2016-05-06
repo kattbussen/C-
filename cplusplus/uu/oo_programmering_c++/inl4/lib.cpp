@@ -28,10 +28,22 @@ void search() {
 	std::cin >> selection;
 
 	if(selection == "T") {
-	
+		std::string title;
+		
+		std::cout << "Enter title search: ";
+		std::cin.ignore();
+		std::getline(std::cin, title);
+
+		lib.searchByTitle(title);	
 	}
 	else if(selection == "A") {
+		std::string searchString;
+		
+		std::cout << "Enter author/title search: ";
+		std::cin.ignore();
+		std::getline(std::cin, searchString);
 
+		lib.searchByArtistOrAuthor(searchString);	
 	}
 	else {
 		std::cout << "Unknown option, returning to main menu." << std::endl;
@@ -99,7 +111,33 @@ void exitLib() {
 	std::cout << "Exiting." << std::endl;
 }
 
-int main() {
+void addNonFictionBook() {
+	std::string title;
+	std::string author;
+	
+	std::cout << "Title: ";
+	std::cin.ignore();
+	std::getline(std::cin, title);
+	std::cout << "Author: ";
+	std::getline(std::cin, author);
+	
+	lib.addNonFictionBook(title, author);
+}
+
+void addFictionBook() {
+	std::string title;
+	std::string author;
+	
+	std::cout << "Title: ";
+	std::cin.ignore();
+	std::getline(std::cin, title);
+	std::cout << "Author: ";
+	std::getline(std::cin, author);
+	
+	lib.addFictionBook(title, author);
+}
+
+void mainMenu() {
 	std::string selection;
 	
 	while(selection != "Q") {
@@ -107,12 +145,8 @@ int main() {
 		std::cin >> selection;
 	
 		if(selection == "C") { addCd(); }	
-		else if(selection == "F") {
-			printHelp();
-		}
-		else if(selection == "N") {
-			printHelp();
-		}
+		else if(selection == "F") { addFictionBook(); }
+		else if(selection == "N") { addNonFictionBook(); }
 		else if(selection == "J") { addJournal(); }
 		else if(selection == "X") { deleteItem(); }
 		else if(selection == "H") { printHelp(); }
@@ -123,6 +157,8 @@ int main() {
 		else if(selection == "P") { lib.printItems(); }
 		else { std::cout << "Unknown option." << std::endl; }
 	}
+}
 
-	return 0;
+int main() {
+	mainMenu();
 }

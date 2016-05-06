@@ -1,7 +1,7 @@
-#include "book.h"
-
 #ifndef NONFICTIONBOOK_H
-#define FICTIONBOOK_H
+#define NONFICTIONBOOK_H
+
+#include "book.h"
 
 class NonFictionBook : public Book {
 	
@@ -13,5 +13,4 @@ class NonFictionBook : public Book {
 
 	private:
 };	
-
 #endif

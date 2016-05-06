@@ -1,12 +1,17 @@
+#ifndef LIBACTIONS_H
+#define LIBACTIONS_H
+
 #include <string>
 #include <fstream>
 #include <vector>
 #include "item.h"
+#include "cd.h"
+#include "journal.h"
+#include "fictionBook.h"
+#include "nonfictionBook.h"
+#include "libActions.h"
 
-#ifndef LIBACTIONS_H
-#define LIBACTIONS_H
-
-class LibActions{
+class LibActions {
 
 	public:	
 		LibActions(std::string file);
@@ -15,9 +20,12 @@ class LibActions{
 
 		void borrowItem(int itemNumber, int borrower);
 		void returnItem(int itemNumber);
-		//bool search(std::string searchString);
+		void searchByTitle(std::string title);
+		void searchByArtistOrAuthor(std::string searchString);
 		void addCd(std::string artist, std::string title, std::string playtime);
 		void addJournal(std::string title, int issue, int year);
+		void addNonFictionBook(std::string title, std::string author);
+		void addFictionBook(std::string title, std::string author);
 		void removeItem(int itemNumber);
 		void printItems();
 		void updateLib(std::string fileName);
@@ -27,5 +35,4 @@ class LibActions{
 		std::vector<Item*> vec;
 		void readFile(std::string file);
 };
-
 #endif

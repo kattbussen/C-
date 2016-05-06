@@ -19,5 +19,4 @@ class Journal : public Item {
 		int issue;
 		int year;
 };
-
 #endif
