@@ -8,7 +8,6 @@ class Cd : public Item {
 
 	public:
 		Cd(std::string inTitle, int itemNumber, int borrowedNumber, std::string inArtist, std::string inPlaytime);
-		~Cd();
 		std::string getArtist();
 		std::string getPlaytime();
 		void printInfo();
@@ -16,7 +15,6 @@ class Cd : public Item {
 
 	private:
 		std::string artist;
-		std::string title;
 		std::string playtime;			
 };
 

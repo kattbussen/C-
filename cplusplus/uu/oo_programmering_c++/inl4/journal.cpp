@@ -5,10 +5,6 @@ Journal::Journal(std::string inTitle, int itemNumber, int borrowedNumber, int in
 	year = inYear;
 }
 		
-Journal::~Journal() {
-
-}
-
 int Journal::getIssue() {
 	return issue;
 }

@@ -5,9 +5,6 @@ Cd::Cd(std::string inTitle, int itemNumber, int borrowedNumber, std::string inAr
 	playtime = inPlaytime;
 }
 		
-Cd::~Cd() {
-}
-
 std::string Cd::getArtist() {
 	return artist;
 }

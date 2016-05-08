@@ -3,9 +3,6 @@
 NonFictionBook::NonFictionBook(std::string inTitle, int itemNumber, int borrowedNumber, std::string inAuthor) : Book(inTitle, itemNumber, borrowedNumber, inAuthor, "NonFiction") {
 }
 
-NonFictionBook::~NonFictionBook() {
-}
-
 std::string NonFictionBook::extractInfo() {
 	std::string type = "NonFiction";
 	std::string id = std::to_string(getIdNumber());

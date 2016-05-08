@@ -11,9 +11,6 @@ class Book : public Item {
 			type = inType;
 		}
 
-		~Book() {
-		}
-
 		std::string getAuthor() {
 			return author;
 		}
