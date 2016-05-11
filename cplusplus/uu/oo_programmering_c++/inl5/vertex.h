@@ -1,0 +1,27 @@
+#ifndef VERTEX_H
+#define VERTEX_H
+class Vertex {
+	public:
+		Vertex() {
+			xPos = 0;
+			yPos = 0;
+		}
+
+		Vertex(double x, double y) {
+			xPos = x;
+			yPos = y;
+		}
+
+		double getXpos() const {
+			return xPos;
+		}
+
+		double getYpos() const {
+			return yPos;
+		}
+
+	private:
+		double xPos;
+		double yPos;
+};
+#endif
