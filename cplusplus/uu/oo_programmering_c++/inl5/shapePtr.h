@@ -11,10 +11,14 @@
 
 class ShapePtr {
 	public:
-		std::vector<Shape*> vec;
 		ShapePtr();
-
+		~ShapePtr();
+		void addLast(Shape* shape);
+		void addFirst(Shape* shape);
+		void printVec();
+	
 	private:
+		std::vector<Shape*> vec;
 
 };
 #endif
