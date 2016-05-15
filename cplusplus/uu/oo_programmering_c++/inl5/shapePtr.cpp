@@ -1,30 +1,22 @@
 #include "shapePtr.h"
 
 ShapePtr::ShapePtr() {
-	vec.clear();
+	shape = 0;
+}
+
+ShapePtr::ShapePtr(Shape* shp) {
+	shape = shp;
 }
 
 ShapePtr::~ShapePtr() {
-	std::vector<Shape*>::iterator it;
-	for(it = vec.begin(); it != vec.end(); ++it) {
-		delete *it;
-	}	
+		//delete shape;
 }
 
-void ShapePtr::addFirst(Shape* shape) {
-	std::vector<Shape*>::iterator it = vec.begin();
-	vec.insert(it, shape);
-}
-
-void ShapePtr::addLast(Shape* shape) {
-	std::vector<Shape*>::iterator it = vec.end();
-	vec.insert(it, shape);
-
-}
-
-void ShapePtr::printVec() {
-	std::vector<Shape*>::iterator it;
-	for(it = vec.begin(); it != vec.end(); ++it) {
-		(*it)->print();
-	}	
+void ShapePtr::printElement() {
+	if (shape != 0) {
+		shape->print();
+	}
+	else {
+		std::cout << "ShapePtr contains no shape." << std::endl;
+	}
 }	

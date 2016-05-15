@@ -12,12 +12,13 @@
 class ShapePtr {
 	public:
 		ShapePtr();
-		ShapePtr(Shape* shp);
 		~ShapePtr();
-		void printElement();
-		Shape* shape;
+		void addLast(Shape* shape);
+		void addFirst(Shape* shape);
+		void printVec();
 	
 	private:
-		//Shape* shape;
+		std::vector<Shape*> vec;
+
 };
 #endif
