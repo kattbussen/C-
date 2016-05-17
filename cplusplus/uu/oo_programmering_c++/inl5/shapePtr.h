@@ -13,10 +13,13 @@ class ShapePtr {
 	public:
 		ShapePtr();
 		ShapePtr(Shape* shp);
+		ShapePtr(Shape &shp);
 		~ShapePtr();
 		void printElement();
 		Shape* shape;
 		friend std::ostream& operator<<(std::ostream &output, ShapePtr ptr);
+		ShapePtr(const ShapePtr &ptr);
+		ShapePtr& operator=(const ShapePtr &ptr);
 	
 	private:
 };

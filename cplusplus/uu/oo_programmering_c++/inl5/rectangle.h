@@ -6,14 +6,15 @@
 
 class Rectangle : public Shape {
 	public:
-		Rectangle(double x, double y, double width, double height);
-		double area();
+		Rectangle(int x, int y, int width, int height);
+		~Rectangle();
+		int area();
 		void print();
 		Rectangle* clone() const;
 		std::string extractInfo();
 		
 	private:
-		double width;
-		double height;
+		int width;
+		int height;
 };
 #endif

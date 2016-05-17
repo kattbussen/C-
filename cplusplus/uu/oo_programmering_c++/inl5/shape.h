@@ -10,7 +10,7 @@ class Shape {
 	public:
 		Vertex vert;
 
-		virtual double area() {
+		virtual int area() {
 			return 0;
 		}
 
@@ -26,8 +26,8 @@ class Shape {
 		}
 	
 		bool isClose(const Vertex ver) {
-			double xdiff = std::abs(ver.getXpos() - getX());
-			double ydiff = std::abs(ver.getYpos() - getY());
+			int xdiff = std::abs(ver.getXpos() - getX());
+			int ydiff = std::abs(ver.getYpos() - getY());
 		
 			if(xdiff < 1 && ydiff < 1)
 				return true;
@@ -35,11 +35,11 @@ class Shape {
 				return false;
 		}
 	
-		double getX() {
+		int getX() {
 			return vert.getXpos();
 		}
 
-		double getY() {
+		int getY() {
 			return vert.getYpos();
 		}
 	

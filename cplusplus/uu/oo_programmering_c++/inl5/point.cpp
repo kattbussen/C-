@@ -1,11 +1,15 @@
 #include "point.h"
 
-Point::Point(double x, double y, double size) {
+Point::Point(int x, int y, int size) {
 	vert = Vertex(x,y);
 	this->size = size;
 }
 
-double Point::area() {
+Point::~Point() {
+	delete this;
+}
+
+int Point::area() {
 	return size;
 }
 

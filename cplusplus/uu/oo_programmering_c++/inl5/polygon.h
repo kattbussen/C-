@@ -7,10 +7,10 @@
 
 class Polygon : public Shape {
 	public:
-		Polygon(double x, double y, Vertex *vertArr, int noVertices);
+		Polygon(int x, int y, Vertex *vertArr, int noVertices);
 		~Polygon();
 		Polygon(const Polygon &p);
-		double area();
+		int area();
 		void print();
 		Polygon* clone() const;
 		std::string extractInfo();

@@ -7,21 +7,25 @@ class Vertex {
 			yPos = 0;
 		}
 
-		Vertex(double x, double y) {
+		Vertex(int x, int y) {
 			xPos = x;
 			yPos = y;
 		}
 
-		double getXpos() const {
+		int getXpos() const {
 			return xPos;
 		}
 
-		double getYpos() const {
+		int getYpos() const {
 			return yPos;
 		}
 
+		void setXpos(int newX) {
+			xPos = newX;
+		}
+
 	private:
-		double xPos;
-		double yPos;
+		int xPos;
+		int yPos;
 };
 #endif

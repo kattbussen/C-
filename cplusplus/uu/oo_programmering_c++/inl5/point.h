@@ -6,13 +6,14 @@
 
 class Point : public Shape {
 	public:
-		Point(double x, double y, double size);
-		double area();
+		Point(int x, int y, int size);
+		~Point();
+		int area();
 		Point* clone() const;
 		void print();
 		std::string extractInfo();
 		
 	private:
-		double size;
+		int size;
 };
 #endif

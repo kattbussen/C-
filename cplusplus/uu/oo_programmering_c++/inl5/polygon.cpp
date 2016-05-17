@@ -1,6 +1,6 @@
 #include "polygon.h"
 
-Polygon::Polygon(double x, double y, Vertex *vertArr, int noVertices) {
+Polygon::Polygon(int x, int y, Vertex *vertArr, int noVertices) {
 	vert = Vertex(x,y);
 	numberOfVertices = noVertices;
 
@@ -12,6 +12,7 @@ Polygon::Polygon(double x, double y, Vertex *vertArr, int noVertices) {
 
 Polygon::~Polygon() {
 	delete[] vertArray;
+	delete this;
 }
 
 Polygon::Polygon(const Polygon &p) {
@@ -25,16 +26,16 @@ Polygon::Polygon(const Polygon &p) {
   }
 }
 
-double Polygon::area() {
-	double sum = 0;
+int Polygon::area() {
+	int sum = 0;
 	for(int i = 0; i < numberOfVertices-1; i++) {
-		double first = vertArray[i].getXpos() * vertArray[i+1].getYpos();
-		double second = vertArray[i+1].getXpos() * vertArray[i].getYpos(); 
+		int first = vertArray[i].getXpos() * vertArray[i+1].getYpos();
+		int second = vertArray[i+1].getXpos() * vertArray[i].getYpos(); 
 		sum += (first - second) / 2;
 	}
 	if(numberOfVertices > 0) {
-		double first = vertArray[numberOfVertices].getXpos() * vertArray[0].getYpos();
-		double second = vertArray[0].getXpos() * vertArray[numberOfVertices].getYpos();
+		int first = vertArray[numberOfVertices].getXpos() * vertArray[0].getYpos();
+		int second = vertArray[0].getXpos() * vertArray[numberOfVertices].getYpos();
 		sum += (first - second) / 2;
 	}	
 

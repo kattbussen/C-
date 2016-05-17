@@ -1,12 +1,16 @@
 #include "rectangle.h"
 
-Rectangle::Rectangle(double x, double y, double width, double height) {
+Rectangle::Rectangle(int x, int y, int width, int height) {
 	vert = Vertex(x,y);
 	this->width = width;
 	this->height = height;
 }
 
-double Rectangle::area() {
+Rectangle::~Rectangle() {
+	delete this;
+}
+
+int Rectangle::area() {
 	return width*height;
 }
 

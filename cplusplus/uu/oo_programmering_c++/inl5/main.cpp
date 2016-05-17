@@ -7,7 +7,6 @@ std::vector<ShapePtr> shapevec;
 void printVec() {
 	std::vector<ShapePtr>::iterator it;
 	for(it = shapevec.begin(); it != shapevec.end(); ++it) {
-		//it->printElement();
 		std::cout << *it << std::endl;
 	}
 }
@@ -41,7 +40,13 @@ int main() {
   shapevec.push_back( ShapePtr(new Rectangle(4, 10, 2, 4)) );
   shapevec.push_back( ShapePtr(new Point(6,7,1)) );
 
-	printVec();
+	//printVec();
+  ShapePtr p = ShapePtr(new Circle(5, 5, 4));
+	ShapePtr pt = ShapePtr(*(p.shape));
+	p.shape->vert.setXpos(4);
+	p.printElement();
+	pt.printElement();
+	
 	/*std::cout << "===============" << std::endl;
 	std::sort(shapevec.begin(), shapevec.end(), compareArea);
 	printVec(); 

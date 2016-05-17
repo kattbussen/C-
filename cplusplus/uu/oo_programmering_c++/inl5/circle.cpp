@@ -1,11 +1,15 @@
 #include "circle.h"
 
-Circle::Circle(double x, double y, double radius) {
+Circle::Circle(int x, int y, int radius) {
 	vert = Vertex(x,y);
 	this->radius = radius;
 }
 
-double Circle::area() {
+Circle::~Circle() {
+	delete this;
+}
+
+int Circle::area() {
 	return M_PI*radius*radius;
 }
 

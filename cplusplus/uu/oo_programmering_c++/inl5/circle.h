@@ -7,13 +7,14 @@
 
 class Circle : public Shape {
 	public:
-		Circle(double x, double y, double radius);
-		double area();
+		Circle(int x, int y, int radius);
+		~Circle();
+		int area();
 		void print();
 		Circle* clone() const;
 		std::string extractInfo();
-		
+
 	private:
-		double radius;
+		int radius;
 };
 #endif
