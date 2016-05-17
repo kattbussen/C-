@@ -17,3 +17,7 @@ Point* Point::clone() const {
 void Point::print() {
 	std::cout << "POINT: (" << vert.getXpos() << "," << vert.getYpos() << ") " << area() << std::endl;
 }
+
+std::string Point::extractInfo() {
+	return "POINT: (" + std::to_string(vert.getXpos()) + "," + std::to_string(vert.getYpos()) + ") " + std::to_string(area());
+}

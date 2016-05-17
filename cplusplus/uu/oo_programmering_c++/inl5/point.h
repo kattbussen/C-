@@ -10,6 +10,7 @@ class Point : public Shape {
 		double area();
 		Point* clone() const;
 		void print();
+		std::string extractInfo();
 		
 	private:
 		double size;

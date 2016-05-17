@@ -13,6 +13,7 @@ class Polygon : public Shape {
 		double area();
 		void print();
 		Polygon* clone() const;
+		std::string extractInfo();
 
 	private:
 		int numberOfVertices;

@@ -10,6 +10,7 @@ class Rectangle : public Shape {
 		double area();
 		void print();
 		Rectangle* clone() const;
+		std::string extractInfo();
 		
 	private:
 		double width;

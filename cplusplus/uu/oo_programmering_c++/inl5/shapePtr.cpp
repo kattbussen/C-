@@ -12,6 +12,11 @@ ShapePtr::~ShapePtr() {
 		//delete shape;
 }
 
+std::ostream& operator<<(std::ostream &output, ShapePtr ptr) {
+	output << ptr.shape->extractInfo();
+	return output;
+}
+
 void ShapePtr::printElement() {
 	if (shape != 0) {
 		shape->print();

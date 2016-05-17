@@ -53,3 +53,14 @@ Polygon* Polygon::clone() const {
 	Polygon* poly = new Polygon(*this);
 	return poly;
 }
+
+std::string Polygon::extractInfo() {
+	std::string tmp = "";
+	tmp = "POLYGON: (" + std::to_string(vert.getXpos()) + "," + std::to_string(vert.getYpos()) +  ") { ";
+	for(int i = 0; i < numberOfVertices; i++) {
+		tmp += "(" + std::to_string(vertArray[i].getXpos()) + "," + std::to_string(vertArray[i].getYpos()) + ") ";	
+	}
+	tmp += "}"; 
+	
+	return tmp;
+}

@@ -1,13 +1,14 @@
 #include "shapePtr.h"
 #include <algorithm>
+#include <fstream>
 
 std::vector<ShapePtr> shapevec;
 
 void printVec() {
 	std::vector<ShapePtr>::iterator it;
 	for(it = shapevec.begin(); it != shapevec.end(); ++it) {
-		it->printElement();
-		//std::cout << it->shape->area() << std::endl;
+		//it->printElement();
+		std::cout << *it << std::endl;
 	}
 }
 
@@ -23,6 +24,11 @@ bool compareArea(ShapePtr first, ShapePtr second) {
 	return first.shape->area() < second.shape->area();
 }
 
+void insertFirst(ShapePtr ptr) {
+	std::vector<ShapePtr>::iterator it = shapevec.begin();
+	shapevec.insert(it, ptr);
+}
+
 int main() {
 	
   Vertex varr[] = { Vertex(0,0), Vertex(10,0), Vertex(5,2), Vertex(5,5) };
@@ -36,7 +42,7 @@ int main() {
   shapevec.push_back( ShapePtr(new Point(6,7,1)) );
 
 	printVec();
-	std::cout << "===============" << std::endl;
+	/*std::cout << "===============" << std::endl;
 	std::sort(shapevec.begin(), shapevec.end(), compareArea);
 	printVec(); 
 	std::cout << "===============" << std::endl;
@@ -45,13 +51,13 @@ int main() {
 	std::cout << "===============" << std::endl;
 	std::sort(shapevec.begin(), shapevec.end(), compareY);
 	printVec(); 
- 
-  /*ofstream os("fil.dat");
-  ostream_iterator<const ShapePtr> shapeout(os,"\n");
+ */
+  std::ofstream os("fil.dat");
+  std::ostream_iterator<const ShapePtr> shapeout(os,"\n");
   copy( shapevec.begin(), shapevec.end(), shapeout);
   os.close();
 
-  ifstream is("fil.dat");
+  /*ifstream is("fil.dat");
   istream_iterator<ShapePtr> shapein(is), endofshapein;
   
   list<ShapePtr> shapelist(shapein, endofshapein );

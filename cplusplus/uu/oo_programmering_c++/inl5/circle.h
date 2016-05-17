@@ -11,6 +11,7 @@ class Circle : public Shape {
 		double area();
 		void print();
 		Circle* clone() const;
+		std::string extractInfo();
 		
 	private:
 		double radius;

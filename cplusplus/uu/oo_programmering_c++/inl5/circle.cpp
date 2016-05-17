@@ -17,3 +17,7 @@ Circle* Circle::clone() const {
 	Circle* circ = new Circle(*this);
 	return circ;
 }
+
+std::string Circle::extractInfo() {
+	return "CIRCLE: (" + std::to_string(vert.getXpos()) + "," + std::to_string(vert.getYpos()) + ") " + std::to_string(radius);
+}

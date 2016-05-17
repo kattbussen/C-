@@ -42,6 +42,10 @@ class Shape {
 		double getY() {
 			return vert.getYpos();
 		}
+	
+		virtual std::string extractInfo() {
+			return "Unknown.";
+		}
 
 	private:
 };

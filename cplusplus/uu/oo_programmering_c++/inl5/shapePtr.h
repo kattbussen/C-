@@ -16,8 +16,8 @@ class ShapePtr {
 		~ShapePtr();
 		void printElement();
 		Shape* shape;
+		friend std::ostream& operator<<(std::ostream &output, ShapePtr ptr);
 	
 	private:
-		//Shape* shape;
 };
 #endif
