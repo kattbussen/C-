@@ -9,6 +9,10 @@
 class Shape {
 	public:
 		Vertex vert;
+		static int numshapes;
+
+		virtual ~Shape() {
+		}
 
 		virtual int area() {
 			return 0;
@@ -20,7 +24,7 @@ class Shape {
 			std::cout << "y: unknown." << std::endl;
 			std::cout << "size: unknown." << std::endl;
 		}
-	
+
 		virtual Shape* clone() const {
 			return NULL;
 		}

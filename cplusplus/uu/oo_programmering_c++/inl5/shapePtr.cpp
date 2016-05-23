@@ -1,5 +1,7 @@
 #include "shapePtr.h"
 
+int Shape::numshapes = 0;
+
 ShapePtr::ShapePtr() {
 	shape = 0;
 }
@@ -13,10 +15,10 @@ ShapePtr::ShapePtr(Shape &shp) {
 }
 
 ShapePtr::~ShapePtr() {
-		//delete *shape;
+	delete shape;
 }
 
-std::ostream& operator<<(std::ostream &output, ShapePtr ptr) {
+std::ostream& operator<<(std::ostream &output, const ShapePtr ptr) {
 	output << ptr.shape->extractInfo();
 	return output;
 }

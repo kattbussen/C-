@@ -3,10 +3,14 @@
 Circle::Circle(int x, int y, int radius) {
 	vert = Vertex(x,y);
 	this->radius = radius;
+	std::cout << "creating circle" << std::endl;
+	numshapes++;
 }
 
 Circle::~Circle() {
-	delete this;
+	std::cout << "deleting circle" << std::endl;
+	numshapes--;
+	std::cout << "Number of shapes left " << numshapes << std::endl;
 }
 
 int Circle::area() {

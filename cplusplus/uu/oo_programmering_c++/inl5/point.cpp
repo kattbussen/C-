@@ -3,10 +3,12 @@
 Point::Point(int x, int y, int size) {
 	vert = Vertex(x,y);
 	this->size = size;
+	std::cout << "creating point" << std::endl;
+	numshapes++;
 }
 
 Point::~Point() {
-	delete this;
+	std::cout << "deleting point" << std::endl;
 }
 
 int Point::area() {

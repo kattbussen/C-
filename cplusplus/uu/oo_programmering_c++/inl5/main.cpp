@@ -28,6 +28,39 @@ void insertFirst(ShapePtr ptr) {
 	shapevec.insert(it, ptr);
 }
 
+void removeElement(int position) {
+	int count = 0;
+	std::vector<ShapePtr>::iterator it;
+
+	if(position < 0 || position >= shapevec.size()) {
+		std::cout << "Unable to remove element, position out of bounds" << std::endl;
+	}
+	else {
+		for(it = shapevec.begin(); it != shapevec.end(); ++it) {
+			if(count == position) {
+				//delete it->shape;
+				shapevec.erase(it);
+				return;
+			}
+			count++;
+		}
+	}
+}
+
+struct IsClose {
+	const Vertex ver;
+	IsClose(const Vertex& vert) : ver(vert) {
+	}
+
+	bool operator()(ShapePtr ptr) const {
+		return ptr.shape->isClose(ver);
+	}
+};
+
+void removeCloseTo(int x, int y) {
+	shapevec.erase(remove_if(shapevec.begin(), shapevec.end(), IsClose( Vertex(x, y) )), shapevec.end());
+}
+
 int main() {
 	
   Vertex varr[] = { Vertex(0,0), Vertex(10,0), Vertex(5,2), Vertex(5,5) };
@@ -35,17 +68,21 @@ int main() {
  // Här antar jag att ShapePtr har en konstruktor som tar en parameter av
  // typen "Shape *" och att just denna konstruktor _inte_ gör djupkopiering
  // Andra konstruktorer ska göra djupkopiering.
-  shapevec.push_back( ShapePtr(new Polygon(1, 4, varr, 4 )) );
-  shapevec.push_back( ShapePtr(new Circle(5, 5, 4)) );
-  shapevec.push_back( ShapePtr(new Rectangle(4, 10, 2, 4)) );
-  shapevec.push_back( ShapePtr(new Point(6,7,1)) );
-
+  
+	//shapevec.push_back( ShapePtr(new Polygon(1, 4, varr, 4 )) );
+	//shapevec.push_back( ShapePtr(new Circle(5, 5, 4)) );
+  //shapevec.push_back( ShapePtr(new Circle(6, 7, 4)) );
+  //shapevec.push_back( ShapePtr(new Rectangle(4, 10, 2, 4)) );
+	shapevec.push_back( ShapePtr(new Point(6,7,1)) );
+	
+	removeElement(0);
+	//removeElement(3);
 	//printVec();
-  ShapePtr p = ShapePtr(new Circle(5, 5, 4));
-	ShapePtr pt = ShapePtr(*(p.shape));
-	p.shape->vert.setXpos(4);
-	p.printElement();
-	pt.printElement();
+  //ShapePtr p = ShapePtr(new Circle(5, 5, 4));
+	//ShapePtr pt = ShapePtr(*(p.shape));
+	//p.shape->vert.setXpos(4);
+	//p.printElement();
+	//pt.printElement();
 	
 	/*std::cout << "===============" << std::endl;
 	std::sort(shapevec.begin(), shapevec.end(), compareArea);
@@ -57,10 +94,11 @@ int main() {
 	std::sort(shapevec.begin(), shapevec.end(), compareY);
 	printVec(); 
  */
-  std::ofstream os("fil.dat");
-  std::ostream_iterator<const ShapePtr> shapeout(os,"\n");
-  copy( shapevec.begin(), shapevec.end(), shapeout);
-  os.close();
+  
+	//std::ofstream os("fil.dat");
+  //std::ostream_iterator<const ShapePtr> shapeout(os,"\n");
+  //copy( shapevec.begin(), shapevec.end(), shapeout);
+  //os.close();
 
   /*ifstream is("fil.dat");
   istream_iterator<ShapePtr> shapein(is), endofshapein;

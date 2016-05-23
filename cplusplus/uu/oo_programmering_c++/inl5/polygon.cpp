@@ -8,11 +8,13 @@ Polygon::Polygon(int x, int y, Vertex *vertArr, int noVertices) {
 	for(int i = 0; i < noVertices; i++) {
 		vertArray[i] = vertArr[i];
 	}
+
+	std::cout << "creating polygon" << std::endl;	
+	numshapes++;
 }
 
 Polygon::~Polygon() {
 	delete[] vertArray;
-	delete this;
 }
 
 Polygon::Polygon(const Polygon &p) {

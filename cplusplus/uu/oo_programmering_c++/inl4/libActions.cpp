@@ -88,6 +88,7 @@ void LibActions::removeItem(int itemNumber) {
 	std::vector<Item*>::iterator it;
 	for(it = vec.begin(); it != vec.end(); ++it) {
 		if((*it)->getIdNumber() == itemNumber){
+			delete *it;
 			vec.erase(it);
 			contentChanged = true;
 			std::cout << "Successfully removed item with number: " << itemNumber << std::endl;
