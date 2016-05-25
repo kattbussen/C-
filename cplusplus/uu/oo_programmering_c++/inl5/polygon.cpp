@@ -9,11 +9,11 @@ Polygon::Polygon(int x, int y, Vertex *vertArr, int noVertices) {
 		vertArray[i] = vertArr[i];
 	}
 
-	std::cout << "creating polygon" << std::endl;	
 	numshapes++;
 }
 
 Polygon::~Polygon() {
+	numshapes--;
 	delete[] vertArray;
 }
 
@@ -27,6 +27,18 @@ Polygon::Polygon(const Polygon &p) {
 		}
   }
 }
+void Polygon::add(Vertex ver) {
+  Vertex *tmpArray = new Vertex[numberOfVertices+1];
+  for(int i = 0; i < numberOfVertices; i++) {
+  	tmpArray[i] = vertArray[i];
+	}
+
+  delete[] vertArray;
+  tmpArray[numberOfVertices] = ver;
+  numberOfVertices++;
+  vertArray = tmpArray;
+}
+
 
 int Polygon::area() {
 	int sum = 0;

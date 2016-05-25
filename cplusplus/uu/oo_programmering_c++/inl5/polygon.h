@@ -14,6 +14,7 @@ class Polygon : public Shape {
 		void print();
 		Polygon* clone() const;
 		std::string extractInfo();
+		void add(Vertex ver);
 
 	private:
 		int numberOfVertices;

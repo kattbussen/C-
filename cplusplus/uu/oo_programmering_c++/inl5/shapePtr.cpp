@@ -7,7 +7,12 @@ ShapePtr::ShapePtr() {
 }
 
 ShapePtr::ShapePtr(Shape* shp) {
-	shape = shp;
+	if(shp != 0) {
+		shape = shp;
+	}
+	else {
+		shape = 0;
+	}
 }
 
 ShapePtr::ShapePtr(Shape &shp) {
@@ -23,6 +28,11 @@ std::ostream& operator<<(std::ostream &output, const ShapePtr ptr) {
 	return output;
 }
 
+std::istream& operator>>(std::istream &input, ShapePtr ptr) {
+	input >> ptr.shape;
+	return input;
+}
+
 ShapePtr& ShapePtr::operator=(const ShapePtr &ptr) {
 	if(this != &ptr) {
 		shape = ptr.shape->clone();
@@ -35,7 +45,6 @@ ShapePtr::ShapePtr(const ShapePtr &ptr) {
 		shape = ptr.shape->clone();
 	}
 }
-
 
 void ShapePtr::printElement() {
 	if (shape != 0) {
