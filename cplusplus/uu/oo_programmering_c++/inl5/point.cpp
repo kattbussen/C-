@@ -3,11 +3,9 @@
 Point::Point(int x, int y, int size) {
 	vert = Vertex(x,y);
 	this->size = size;
-	numshapes++;
 }
 
 Point::~Point() {
-	numshapes--;
 }
 
 int Point::area() {

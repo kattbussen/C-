@@ -3,11 +3,9 @@
 Circle::Circle(int x, int y, int radius) {
 	vert = Vertex(x,y);
 	this->radius = radius;
-	numshapes++;
 }
 
 Circle::~Circle() {
-	numshapes--;
 }
 
 int Circle::area() {

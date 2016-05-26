@@ -8,12 +8,9 @@ Polygon::Polygon(int x, int y, Vertex *vertArr, int noVertices) {
 	for(int i = 0; i < noVertices; i++) {
 		vertArray[i] = vertArr[i];
 	}
-
-	numshapes++;
 }
 
 Polygon::~Polygon() {
-	numshapes--;
 	delete[] vertArray;
 }
 

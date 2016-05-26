@@ -21,6 +21,7 @@ class ShapePtr {
 		friend std::istream& operator>>(std::istream &input, ShapePtr ptr);
 		ShapePtr(const ShapePtr &ptr);
 		ShapePtr& operator=(const ShapePtr &ptr);
+		static int numshapes;
 	
 	private:
 };

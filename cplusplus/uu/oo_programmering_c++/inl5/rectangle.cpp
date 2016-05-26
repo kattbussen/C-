@@ -4,11 +4,9 @@ Rectangle::Rectangle(int x, int y, int width, int height) {
 	vert = Vertex(x,y);
 	this->width = width;
 	this->height = height;
-	numshapes++;
 }
 
 Rectangle::~Rectangle() {
-	numshapes--;
 }
 
 int Rectangle::area() {

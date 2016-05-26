@@ -3,6 +3,7 @@
 #include <fstream>
 #include <list>
 
+int ShapePtr::numshapes = 0;
 std::vector<ShapePtr> shapevec;
 
 void printVec() {
@@ -172,11 +173,11 @@ int main() {
 
 
   std::ifstream is("fil.dat");
-	//read(is);
+	read(is);
 	  
 
-	//std::istream_iterator<ShapePtr> shapein(is); //, endofshapein;
-	std::istream_iterator<ShapePtr> endofshapein;
+	//std::istream_iterator<ShapePtr> shapein(is), endofshapein;
+	//std::istream_iterator<ShapePtr> endofshapein;
   //std::list<ShapePtr> shapelist(shapein, endofshapein );
   //for (std::list<ShapePtr>::iterator it = shapelist.begin(); it != shapelist.end(); it++) 
   //  std::cout << *it << std::endl;
@@ -188,7 +189,7 @@ int main() {
 
   std::ostream_iterator<const ShapePtr> shapecout(std::cout,"\n");
   std::cout << shapevec.size() << std::endl;
-  std::cerr << Shape::numshapes << std::endl; // numshapes är ett statiskt attribut 
+  std::cerr << ShapePtr::numshapes << std::endl; // numshapes är ett statiskt attribut 
                                         // som håller reda på antalet objekt genom 
                                         // inkrement i konstruktorer och
                                         // dekrement i destruktorn

@@ -9,9 +9,6 @@
 class Shape {
 	public:
 		Vertex vert;
-		static int numshapes;
-
-		Shape() { numshapes++; }
 
 		virtual ~Shape() {
 		}

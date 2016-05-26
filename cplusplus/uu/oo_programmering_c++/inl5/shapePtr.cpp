@@ -1,9 +1,8 @@
 #include "shapePtr.h"
 
-int Shape::numshapes = 0;
-
 ShapePtr::ShapePtr() {
 	shape = 0;
+	numshapes++;
 }
 
 ShapePtr::ShapePtr(Shape* shp) {
@@ -13,14 +12,24 @@ ShapePtr::ShapePtr(Shape* shp) {
 	else {
 		shape = 0;
 	}
+	numshapes++;	
 }
 
 ShapePtr::ShapePtr(Shape &shp) {
 	shape = shp.clone();
+	numshapes++;
+}
+
+ShapePtr::ShapePtr(const ShapePtr &ptr) {
+	if (this != &ptr) {
+		shape = ptr.shape->clone();
+	}
+	numshapes++;
 }
 
 ShapePtr::~ShapePtr() {
 	delete shape;
+	numshapes--;
 }
 
 std::ostream& operator<<(std::ostream &output, const ShapePtr ptr) {
@@ -38,12 +47,6 @@ ShapePtr& ShapePtr::operator=(const ShapePtr &ptr) {
 		shape = ptr.shape->clone();
 	}
 	return *this;
-}
-
-ShapePtr::ShapePtr(const ShapePtr &ptr) {
-	if (this != &ptr) {
-		shape = ptr.shape->clone();
-	}
 }
 
 void ShapePtr::printElement() {
