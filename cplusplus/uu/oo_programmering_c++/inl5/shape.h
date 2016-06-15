@@ -50,6 +50,10 @@ class Shape {
 			return "Unknown.";
 		}
 
+		virtual std::istream& read(std::istream &input) {
+			return input;
+		}
+
 	private:
 };
 #endif

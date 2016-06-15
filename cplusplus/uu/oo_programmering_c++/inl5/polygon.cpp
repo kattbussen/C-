@@ -1,5 +1,10 @@
 #include "polygon.h"
 
+Polygon::Polygon() {
+	numberOfVertices = 0;
+	vertArray = 0;
+}
+
 Polygon::Polygon(int x, int y, Vertex *vertArr, int noVertices) {
 	vert = Vertex(x,y);
 	numberOfVertices = noVertices;
@@ -75,4 +80,39 @@ std::string Polygon::extractInfo() {
 	tmp += "}"; 
 	
 	return tmp;
+}
+
+std::istream& Polygon::read(std::istream &input) {
+	int x, y, vertX, vertY;
+  std::string substring;
+
+  input >> substring;    
+  x = std::stoi(substring.substr(1, substring.find(',')));
+  y = std::stoi(substring.substr(substring.find(',')+1, substring.size()-1));
+
+  //read the first vertice
+  input >> substring;
+  input >> substring;
+  vertX = std::stoi(substring.substr(1, substring.find(',')));
+  vertY = std::stoi(substring.substr(substring.find(',')+1, substring.size()-1));
+  Vertex varr[1] = { Vertex(vertX, vertY) };
+  Polygon *poly = new Polygon(x, y, varr, 1); 
+    
+  //read additional vertices
+  input >> substring;
+	while(substring != "}") {
+		vertX = std::stoi(substring.substr(1, substring.find(',')));
+    vertY = std::stoi(substring.substr(substring.find(',')+1, substring.size()-1));
+    add(Vertex(vertX,vertY));
+    input >> substring;
+	}   
+   
+	vert = Vertex(x,y);
+
+	//vertArray = new Vertex[noVertices];
+	//for(int i = 0; i < noVertices; i++) {
+	//	vertArray[i] = vertArr[i];
+	//}
+
+  return input;
 }

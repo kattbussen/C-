@@ -7,6 +7,7 @@
 
 class Polygon : public Shape {
 	public:
+		Polygon();
 		Polygon(int x, int y, Vertex *vertArr, int noVertices);
 		~Polygon();
 		Polygon(const Polygon &p);
@@ -15,6 +16,7 @@ class Polygon : public Shape {
 		Polygon* clone() const;
 		std::string extractInfo();
 		void add(Vertex ver);
+		std::istream& read(std::istream &input);
 
 	private:
 		int numberOfVertices;

@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <fstream>
 #include <list>
+#include <iterator>
 
 int ShapePtr::numshapes = 0;
 std::vector<ShapePtr> shapevec;
@@ -62,81 +63,6 @@ void removeCloseTo(int x, int y) {
 	shapevec.erase(remove_if(shapevec.begin(), shapevec.end(), IsClose( Vertex(x, y) )), shapevec.end());
 }
 
-void read(std::istream &is) {
-
- 	std::string str;
-
-	while(is >> str) {
-		str = str.substr(0, str.size()-1);
-		
-		if(str == "POLYGON") {
-			int x, y, vertX, vertY;
-			std::string substring;
-
-			is >> substring;			
-			x = std::stoi(substring.substr(1, substring.find(',')));
-			y = std::stoi(substring.substr(substring.find(',')+1, substring.size()-1));
-
-			//read the first vertice
-			is >> substring;
-			is >> substring;
-			vertX = std::stoi(substring.substr(1, substring.find(',')));
-			vertY = std::stoi(substring.substr(substring.find(',')+1, substring.size()-1));
-			Vertex varr[1] = { Vertex(vertX, vertY) };
-			Polygon *poly = new Polygon(x, y, varr, 1);
-			
-			//read additional vertices
-			is >> substring;
-			while(substring != "}") {
-				vertX = std::stoi(substring.substr(1, substring.find(',')));
-				vertY = std::stoi(substring.substr(substring.find(',')+1, substring.size()-1));
-				poly->add(Vertex(vertX,vertY));
-				is >> substring;
-			}
-			shapevec.push_back( ShapePtr(poly));
-		}
-		else if(str == "CIRCLE") {
-			int x, y, radius;
-			std::string substring;
-
-			is >> substring;			
-			x = std::stoi(substring.substr(1, substring.find(',')));
-			y = std::stoi(substring.substr(substring.find(',')+1, substring.size()-1));
-			is >> radius;
-			
-			shapevec.push_back( ShapePtr(new Circle(x, y, radius)) );	
-		}
-		else if(str == "POINT") {
-			int x, y, size;
-			std::string substring;
-
-			is >> substring;			
-			x = std::stoi(substring.substr(1, substring.find(',')));
-			y = std::stoi(substring.substr(substring.find(',')+1, substring.size()-1));
-			is >> size;
-			
-			shapevec.push_back( ShapePtr(new Point(x, y, size)) );	
-		}
-		else if(str == "RECTANGLE") {
-			int x, y, width, height;
-			std::string substring;
-			
-			is >> substring;
-			x = std::stoi(substring.substr(1, substring.find(',')));
-			y = std::stoi(substring.substr(substring.find(',')+1, substring.size()-1));
-			
-			is >> substring;
-			width = std::stoi(substring.substr(1, substring.find(',')));
-			height = std::stoi(substring.substr(substring.find(',')+1, substring.size()-1));
-			
-			shapevec.push_back( ShapePtr(new Rectangle(x, y, width, height)) );
-		}
-		else {
-			std::cout << "läste okänd form" << std::endl;
-		}
-	}
-}
-
 int main() {
 	
   Vertex varr[] = { Vertex(0,0), Vertex(10,0), Vertex(5,2), Vertex(5,5) };
@@ -173,15 +99,13 @@ int main() {
 
 
   std::ifstream is("fil.dat");
-	read(is);
-	  
-
-	//std::istream_iterator<ShapePtr> shapein(is), endofshapein;
-	//std::istream_iterator<ShapePtr> endofshapein;
-  //std::list<ShapePtr> shapelist(shapein, endofshapein );
-  //for (std::list<ShapePtr>::iterator it = shapelist.begin(); it != shapelist.end(); it++) 
-  //  std::cout << *it << std::endl;
-  //shapevec.insert( shapevec.end(), shapelist.begin(), shapelist.end() );
+	std::istream_iterator<ShapePtr> shapein(is), endofshapein;
+  std::list<ShapePtr> shapelist(shapein, endofshapein);
+  for (std::list<ShapePtr>::iterator it = shapelist.begin(); it != shapelist.end(); it++) { 
+    std::cout << *it << std::endl;
+		//std::cout << "hej" << std::endl;
+	}
+  shapevec.insert( shapevec.end(), shapelist.begin(), shapelist.end() );
   
 
   
