@@ -3,7 +3,7 @@
 
 #ifndef ABS_ALG
 #define ABS_ALG
-#include "include/AbstractAlgorithm.h"
+#include "include/abstractAlgorithm.h"
 #endif
 
 class QuickSort : public SortAlgorithm

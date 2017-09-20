@@ -1,6 +1,6 @@
 #include <iostream>
 #include "insertionSort/insertionSort.h"
-#include "quicksort/quicksort.h"
+#include "quickSort/quickSort.h"
 #include "selectionSort/selectionSort.h"
 
 /****************************************
