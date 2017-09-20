@@ -1,0 +1,460 @@
+###############
+# Uppgift 1
+###############
+Arrayen a behöver intialiseras, tex;
+A a[10] = {A(10), A(1), A(2), A(3), A(4), A(5), A(6), A(7), A(8), A(9)};
+
+Vid utskriften behöver man anropa get-funktionen;
+cout << a[i].get() << " ";
+
+Det behövs en funktion att sortera efter till sort, tex;
+bool sortA(const A first, const A second) {
+	if(first.get() < second.get())
+		return true;
+	else
+		return false;
+}
+som sedan ska skickas med i anropet;
+sort( a, a+10, sortA);
+
+
+###############
+# Uppgift 2
+###############
+const int myDog = newDog
+Här betyder const att variabeln myDog är konstant och inte 
+får ändras efter tilldelning.
+
+void print() const;
+Här betyder const att print inte får lov att ändra några klassvariabler.
+
+A& operator=(const &A)
+Här betyder const att argumentet A inte får ändras i funktionen.
+
+
+###############
+# Uppgift 3
+###############
+Jag hade valt aggregering, eftersom stacken enklast implementeras genom 
+att skapa ett Vector object och sedan använder Vectorns funktioner 
+internt till push/pop. Väljer man arv måste man tex skriva över
+'insert' funktionen i Vector eftersom detta inte ska tillåtas i en stack.
+
+Class Stack {
+	public:
+		Vector vec;
+		Stack(int size) {
+			vec = Vector(size);
+		}	
+		void push( T element) {
+			vec.add(element);
+		}
+	
+		T pop() {
+			vec.removeElementAt(vec.numElements());
+		}
+}
+
+pop funktionen behöver eventuellt ta '-1' på numElements,
+beroende på hur Vectorn räknar positioner.
+
+
+###############
+# Uppgift 4
+###############
+Klassen behöver en virtuell funktion 'skriv', tex;
+
+class Fordon {
+  public:
+    Fordon( int c ) : colour(c) {}
+		virtual void skriv(ostream os) = 0;
+  private:
+    int colour;
+};
+
+
+En destruktor behövs för att se till att klasser som ärver fordon
+lämnar tillbaka minne ordentligt.
+Om tex bil har dynamiskt allokerad data och du har en Fordon[] 
+som du kör delete[] på så kommer inte datat för bilar att 
+tas bort korrekt.
+
+Den ska deklareras virtual, tex;
+virtual ~Fordon() {}
+
+Då kommer destruktorerna i ärvda klasser anropas och där kan man se
+till så att minnet lämnas tilbaka som det ska.
+
+
+###############
+# Uppgift 5
+###############
+class EnMassaTal {
+	public:
+  	EnMassaTal( char *filnamn) 
+  	{
+    	ifstream filen( filnamn );
+			if(!filen)
+				throw "FileNotFoundException";
+	
+    	filen >> antal;
+		
+			try {
+    		talen = new double[antal];
+		
+				for (int i=0; i< antal; i++)
+      		filen >> talen[i]) ) 
+			}
+			catch (exception& e) {
+				cerr << "Unable to allocate memory. " << e.what() << endl;
+			}
+  	}
+
+  	~EnMassaTal() { delete[] talen; }
+
+	private:
+  	double *talen;
+  	int antal;
+};
+
+void main()
+{
+	try {
+  	EnMassaTal talen("filen"); 
+  	doSomething ( talen );      
+	}
+	catch (const char* msg) {
+		cerr << msg << endl;
+	}
+}
+
+
+###############
+# Uppgift 6
+###############
+#include <string>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+class Course {
+  private:
+    string name;
+    int points;
+  
+	public:
+    Course(string na, int point) {
+      name = na;
+      points = point;
+    } 
+    
+    string getName() {
+      return name;
+    } 
+    
+    int getPoints() {
+      return points;
+    }
+		
+		string printInfo() {
+			return name+"("+to_string(points)+") ";
+		} 
+};  
+
+class Person {
+  private:
+    vector<Course> courseVec;
+    string name;
+
+  public:
+    Person(string na) {
+      name = na;
+    } 
+    
+    string getName() {
+      return name;
+    } 
+    
+    void addCourse(Course *course) {
+      courseVec.push_back(*course); 
+    } 
+		
+		string getCourses() {
+			string ret = "";
+	
+			vector<Course>::iterator it;
+			for(it = courseVec.begin(); it != courseVec.end(); ++it) {
+				ret += it->printInfo();
+			}
+			return ret;
+		}
+
+		virtual string printInfo() = 0;
+};  
+
+class Student : public Person {
+  public:
+    Student(string name) : Person(name) {
+    }
+	
+		string printInfo() {
+			string ret = getName();
+			ret += ", student, studerar " + getCourses() + "\n";
+			
+			return ret;
+		}	
+};  
+
+class Employee : public Person {
+  private:
+    string role;
+    int salary;
+  
+	public:
+    Employee(string name, string ro, int sal) : Person(name) {
+      role = ro;
+      salary = sal;
+    }
+
+		string printInfo() {
+			string ret = getName();
+			ret += ", " + role + ", " + "tjänar  " + to_string(salary);
+			ret += ", undervisar " + getCourses() + "\n";
+			return ret;
+		} 
+};  
+
+class Department {
+  private:
+    vector<Employee> evec;
+    vector<Student> svec;
+		 
+ 
+	public:
+    void addEmployee(Employee *emp) {
+      evec.push_back(*emp);
+    }
+  
+    void addStudent(Student *stud) {
+      svec.push_back(*stud);
+		}
+
+		ostream& print(ostream &output) {
+
+			output << "ANSTÄLLDA:" << endl;
+
+			vector<Employee>::iterator eit;
+			for(eit = evec.begin(); eit != evec.end(); ++eit) {
+				output << eit->printInfo();	
+			}
+
+			output << "STUDENTER:" << endl;
+			vector<Student>::iterator sit;
+			for(sit = svec.begin(); sit != svec.end(); ++sit) {
+				output << sit->printInfo();
+			}
+
+			return output;
+		}
+		
+		friend std::ostream& operator<<(std::ostream &output, Department dpt) {
+			return dpt.print(output);
+		}
+};
+
+
+###############
+# Uppgift 7
+###############
+class Class {
+	public:
+  	Class(int ii, double dd ) : ival(ii)  { 
+			dval = new double; 
+			*dval = dd;
+		}
+	
+  	~Class() { 
+			delete dval;
+		}
+
+		Class(const Class &cl) {
+			if(this != &cl) {
+				ival = cl.ival;
+				dval = new double(*(cl.dval));
+			}
+		}
+
+		int getInt() {
+			return ival;
+		}
+
+		double getDouble() {
+			return *dval;
+		}	
+
+		friend std::ostream& operator<<(std::ostream &output, Class cl) {
+			output << "(" << cl.getInt() << " " << cl.getDouble() << ")";
+			return output;
+		}
+
+	private:
+  	int ival;
+  	double *dval;
+};
+
+
+###############
+# Uppgift 8
+###############
+Det står inget om att jag inte kan använda std::list som finns i std.
+Så implementationen nedan är gjort med antagande om att detta är okej.
+
+#include <list>
+#include <iostream>
+
+using namespace std;
+
+template <typename T> class UnaryPredicate {
+	public:
+  	virtual bool operator()( T value ) = 0;
+};
+
+template <typename T> class GreaterThan : public UnaryPredicate<T> {
+	private:
+		T limit;
+	public:
+		GreaterThan(T lim) : limit(lim) {
+	}
+
+	bool operator()(T val) {
+		return val > limit;
+	}
+};
+
+template <typename T> class List {
+	private:
+		std::list<T> list;
+	
+	public:
+		List() {
+		}
+
+		~List() {
+		}
+
+		void add(T val) {
+			list.push_back(val);
+		}
+
+		void add_if(T val, UnaryPredicate<T>& pred) {
+			if(pred(val))
+				list.push_back(val);
+		}
+
+		List<T> remove_if(UnaryPredicate<T>& pred) {
+			List<T> alist;
+			
+			typename std::list<T>::iterator it;
+			for(it = list.begin(); it != list.end(); ++it) {
+				if(!pred(*it)) {
+					alist.add(*it);
+				}
+			}
+			return alist;
+		}
+};
+
+
+###############
+# Uppgift 9
+###############
+#include <iostream>
+#include <string>
+#include <map>
+#include <fstream>
+#include <vector>
+
+using namespace std;
+
+map<string, vector<string>> italian;
+map<string, vector<string>> german;
+map<string, vector<string>> czech;
+map<string, vector<string>> hungarian;
+
+void populateMaps() {
+	ifstream istream("words.txt");
+
+	string value1, value2, value3, value4;
+
+	istream >> value1;
+	
+	while(!istream.eof()){
+		istream >> value2;
+		istream >> value3;
+		istream >> value4;
+		
+		vector<string> it, ger, cz, hun;
+		it.push_back(value2);
+		it.push_back(value3);
+		it.push_back(value4);
+		italian[value1] = it;
+
+		ger.push_back(value1);
+		ger.push_back(value3);
+		ger.push_back(value4);
+		german[value2] = ger;	
+	
+		cz.push_back(value1);
+		cz.push_back(value2);
+		cz.push_back(value4);
+		czech[value3] = cz;
+		
+		hun.push_back(value1);
+		hun.push_back(value2);
+		hun.push_back(value3);
+		hungarian[value4] = hun;
+		
+		istream >> value1;
+	}
+}
+
+int main() {
+	populateMaps();	
+
+	string lang;
+	string word;
+	vector<string> transVec;
+
+	while(true) {
+		cout << "Language: ";
+		cin >> lang;
+		cout << "Word: ";
+		cin >> word;
+
+		if(lang == "Italian"){
+			transVec = italian[word];
+			cout << " German: " << transVec[0] << ", Czech: " << transVec[1]; 
+			cout << ", Hungarian: " << transVec[2] << endl;
+		}
+		else if(lang == "German") {
+			transVec = german[word];
+			cout << " Italian: " << transVec[0] << ", Czech: " << transVec[1];
+			cout << ", Hungarian: " << transVec[2] << endl;
+		}
+		else if(lang == "Czech") {
+			transVec = czech[word];
+			cout << " Italian: " << transVec[0] << ", German: " << transVec[1];
+			cout << ", Hungarian: " << transVec[2] << endl;
+		}
+		else if(lang == "Hungarian") {
+			transVec = hungarian[word];
+			cout << " Italian: " << transVec[0] << ", German: " << transVec[1]; 
+			cout << ", Czech: " << transVec[2] << endl;
+		}
+		else
+			cout << "Unknown Language" << endl;
+	}
+
+	return 0;
+}
